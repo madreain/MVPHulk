@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--ToolBar 一般属性-->
+    <!--app:contentInsetLeft="0dp"-->
+    <!--app:contentInsetStart="0dp"-->
+    <style name="Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/mFFFFFF</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="android:theme">?attr/actionBarTheme</item>
+        <item name="android:popupTheme" tools:targetApi="lollipop">
+            @style/ThemeOverlay.AppCompat.Light
+        </item>
+        <item name="titleTextAppearance">@style/ToolbarText</item><!--修改文本属性-->
+        <item name="android:elevation" tools:targetApi="lollipop">0dp</item>
+        <item name="android:actionMenuTextColor">@color/m444444</item>
+        <item name="android:textColorPrimary">@color/m444444</item>
+    </style>
+
+    <!--ToolBar 文本属性-->
+    <style name="ToolbarText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/m444444</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- toolbar菜单主题 app:theme -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/m444444</item>
+    </style>
+
+    <style name="BaseViewStyleBig" parent="BaseViewStyle" />
+
+    <style name="BaseViewStyle">
+        <item name="android:foreground">@drawable/hulk_selector_bg_click_color</item>
+    </style>
+
+    <style name="BaseViewStyleBigAlpha" parent="BaseViewStyleAlpha" />
+
+    <style name="BaseViewStyleAlpha">
+        <item name="android:foreground">@drawable/hulk_selector_bg_click_color_alpha</item>
+    </style>
+
+    <!--avloading-->
+    <style name="AVLoadingIndicatorView">
+        <item name="minWidth">48dip</item>
+        <item name="maxWidth">48dip</item>
+        <item name="minHeight">48dip</item>
+        <item name="maxHeight">48dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Large">
+        <item name="minWidth">76dip</item>
+        <item name="maxWidth">76dip</item>
+        <item name="minHeight">76dip</item>
+        <item name="maxHeight">76dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+    <style name="AVLoadingIndicatorView.Small">
+        <item name="minWidth">24dip</item>
+        <item name="maxWidth">24dip</item>
+        <item name="minHeight">24dip</item>
+        <item name="maxHeight">24dip</item>
+        <item name="indicatorName">BallPulseIndicator</item>
+    </style>
+
+</resources>

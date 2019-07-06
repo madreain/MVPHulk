@@ -1,0 +1,139 @@
+ext {
+    //查看依赖树   ./gradlew -q app:dependencies
+    //这里选择的是不支持AndroidX的版本，得注意相关第三方库也不能使用AndroidX相关的引用
+    //应用配置
+    android = [
+            compileSdkVersion       : 28,
+            buildToolsVersion       : "28.0.0",
+            minSdkVersion           : 16,
+            targetSdkVersion        : 28,
+            versionCode             : 1,
+            versionName             : "1.0.0",
+            applicationId           : "com.madreain.hulk"
+    ]
+
+    version = [
+            androidSupportSdkVersion: "28.0.0",
+            okhttp3SdkVersion       : "4.0.0",
+            retrofitSdkVersion      : "2.6.0",
+            glideSdkVersion         : "4.9.0",
+            dagger2SdkVersion       : "2.21",
+            butterknifeSdkVersion   : "9.0.0",
+            rxlifecycle2SdkVersion  : "2.2.2",
+
+            espressoSdkVersion      : "3.0.1",
+            canarySdkVersion        : "1.5.4"
+    ]
+
+    dependencies = [
+            //support
+            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+            "design"                   : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+            "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+            "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+            "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+            "constraint-layout"        : "com.android.support.constraint:constraint-layout:1.1.3",
+            "multidex"                 : "com.android.support:multidex:1.0.3",
+
+            //rx
+            "rxjava2"                  : "io.reactivex.rxjava2:rxjava:2.2.7",
+            "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.1.1",
+            "rxlifecycle2"             : "com.trello.rxlifecycle2:rxlifecycle:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-android"     : "com.trello.rxlifecycle2:rxlifecycle-android:${version["rxlifecycle2SdkVersion"]}",
+            "rxlifecycle2-components"  : "com.trello.rxlifecycle2:rxlifecycle-components:${version["rxlifecycle2SdkVersion"]}",
+//            "rxcache2"                 : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+            "rxpermissions2"           : "com.github.tbruyelle:rxpermissions:0.10.2",
+
+            //network
+            "okhttp3"                  : "com.squareup.okhttp3:okhttp:${version["okhttp3SdkVersion"]}",
+            "okhttp3-log"              : "com.squareup.okhttp3:logging-interceptor:${version["okhttp3SdkVersion"]}",
+            "retrofit"                 : "com.squareup.retrofit2:retrofit:${version["retrofitSdkVersion"]}",
+            "retrofit-converter-gson"  : "com.squareup.retrofit2:converter-gson:${version["retrofitSdkVersion"]}",
+            "retrofit-adapter-rxjava2" : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitSdkVersion"]}",
+
+            //glide
+            "glide"                    : "com.github.bumptech.glide:glide:${version["glideSdkVersion"]}",
+            "glide-compiler"           : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
+            //Glide与OkHttp结合使用的问题
+            "glide-loader-okhttp3"     : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
+            "glide-annotations"        : "com.github.bumptech.glide:annotations:${version["glideSdkVersion"]}",
+
+            //tools
+            //gson
+            "gson"                     : "com.google.code.gson:gson:2.8.5",
+            //dagger2
+            "dagger2"                  : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
+//            "dagger2-android"          : "com.google.dagger:dagger-android:${version["dagger2SdkVersion"]}",
+            "dagger2-android-support"  : "com.google.dagger:dagger-android-support:${version["dagger2SdkVersion"]}",
+            "dagger2-compiler"         : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
+//            "dagger2-android-processor": "com.google.dagger:dagger-android-processor:${version["dagger2SdkVersion"]}",
+            //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
+            "javax.annotation"         : "org.glassfish:javax.annotation:10.0-b28",
+            //butterknife
+            "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
+            "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
+            //eventbus
+            "eventbus"                 : "org.greenrobot:eventbus:3.1.1",
+            //arouter
+            "arouter"                  : "com.alibaba:arouter-api:1.4.1",
+            "arouter-compiler"         : "com.alibaba:arouter-compiler:1.2.2",
+            //BaseRecyclerViewAdapterHelper
+            "brvah"                    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46",
+            //SmartRefreshLayout
+            "SmartRefreshLayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-28",
+            "SmartRefreshHeader"       : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-28",
+            //multidex
+            "multidex"                 : "com.android.support:multidex:1.0.3",
+
+            //view
+            "lottie"                   : "com.airbnb.android:lottie:2.7.0",
+            "topsnackbar"              : "com.androidadvance:topsnackbar:1.1.1",
+
+
+            "autolayout"               : "com.zhy:autolayout:1.4.5",
+            "pickerview"               : "com.contrarywind:Android-PickerView:3.2.5",
+            "photoview"                : "com.github.chrisbanes.photoview:library:1.2.3",
+            "numberprogressbar"        : "com.daimajia.numberprogressbar:library:1.2@aar",
+            "nineoldandroids"          : "com.nineoldandroids:library:2.4.0",
+            "paginate"                 : "com.github.markomilos:paginate:0.5.1",
+            "vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
+            "autosize"                 : "me.jessyan:autosize:1.1.1",
+            //tools
+            "androideventbus"          : "org.simple:androideventbus:1.0.5.1",
+            "otto"                     : "com.squareup:otto:1.3.8",
+            "progressmanager"          : "me.jessyan:progressmanager:1.5.0",
+            "retrofit-url-manager"     : "me.jessyan:retrofit-url-manager:1.4.0",
+            "lifecyclemodel"           : "me.jessyan:lifecyclemodel:1.0.1",
+            //test
+            "junit"                    : "junit:junit:4.12",
+            "androidJUnitRunner"       : "android.support.test.runner.AndroidJUnitRunner",
+            "runner"                   : "com.android.support.test:runner:1.0.1",
+            "espresso-core"            : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
+            "espresso-contrib"         : "com.android.support.test.espresso:espresso-contrib:${version["espressoSdkVersion"]}",
+            "espresso-intents"         : "com.android.support.test.espresso:espresso-intents:${version["espressoSdkVersion"]}",
+            "mockito-core"             : "org.mockito:mockito-core:1.+",
+            "timber"                   : "com.jakewharton.timber:timber:4.7.1",
+            "logger"                   : "com.orhanobut:logger:2.2.0",
+            "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
+            "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
+            "umeng-analytics"          : "com.umeng.analytics:analytics:6.0.1"
+    ]
+
+    /**
+     * 日志和环境配置
+     */
+    //开启日志
+    OPEN_LOG = true
+//    OPEN_LOG = false
+    //开启切换环境
+    OPEN_CHANGE = true
+//    OPEN_CHANGE = false
+    //baseurl
+    BASE_URL = " http://www.mxnzp.com"
+    //网络请求成功
+    CODE_SUCCESS = "1"
+
+
+
+}
