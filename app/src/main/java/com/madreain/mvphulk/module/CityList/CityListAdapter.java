@@ -17,6 +17,7 @@ import javax.inject.Inject;
  * module：
  * description：
  */
+
 public class CityListAdapter extends BaseAdapter<CityListListData, CityListActivity> {
 
     @Inject
