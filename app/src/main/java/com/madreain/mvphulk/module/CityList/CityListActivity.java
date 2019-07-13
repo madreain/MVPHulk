@@ -21,7 +21,7 @@ import butterknife.BindView;
  */
 
 @Route(path = ARouterUri.CityListActivity)
-public class CityListActivity extends BaseListActivity<CityListPresenter, CityListAdapter, CityListListData> implements CityListContract.View {
+public class CityListActivity extends BaseListActivity<CityListPresenter, CityListAdapter<CityListActivity>, CityListListData> implements CityListContract.View {
 
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;

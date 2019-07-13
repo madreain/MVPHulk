@@ -32,19 +32,19 @@ public class CityListPresenter extends BasePresenter<CityListModel, CityListCont
     }
 
     public void loadPageListData(final int pageNum) {
-//        model.loadListDatas(pageNum)
-//                .compose(Transformer.retrofit(view))
-//                .subscribeWith(new RSubscriberList<List<CityListListData>>(view, pageNum) {
-//                    @Override
-//                    public void _onNext(List<CityListListData> datas) {
-//                        view.showListData(datas, pageNum);
-//                    }
-//
-//                    @Override
-//                    public void retry() {
-//                        loadPageListData(pageNum);
-//                    }
-//
-//                });
+        model.loadListDatas(pageNum)
+                .compose(Transformer.retrofit(view))
+                .subscribeWith(new RSubscriberList<List<CityListListData>>(view, pageNum) {
+                    @Override
+                    public void _onNext(List<CityListListData> datas) {
+                        view.showListData(datas, pageNum);
+                    }
+
+                    @Override
+                    public void retry() {
+                        loadPageListData(pageNum);
+                    }
+
+                });
     }
 }

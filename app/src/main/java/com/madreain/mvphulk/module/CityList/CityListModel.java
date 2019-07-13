@@ -20,6 +20,7 @@ public class CityListModel extends BaseModel<ApiService> implements CityListCont
 
     @Inject
     public CityListModel() {
+        super();
     }
 
     @Override

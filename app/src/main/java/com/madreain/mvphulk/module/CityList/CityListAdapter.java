@@ -2,6 +2,7 @@ package com.madreain.mvphulk.module.CityList;
 
 
 import com.madreain.hulk.adapter.BaseAdapter;
+import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.view.baseviewholder.HulkViewHolder;
 
 import com.madreain.mvphulk.R;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
  * description：
  */
 
-public class CityListAdapter extends BaseAdapter<CityListListData, CityListActivity> {
+public class CityListAdapter<V extends IView> extends BaseAdapter<CityListListData, CityListActivity> {
 
     @Inject
     public CityListAdapter() {
