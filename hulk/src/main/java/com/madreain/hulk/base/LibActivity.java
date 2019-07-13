@@ -15,6 +15,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.AndroidInjection;
 
 
@@ -39,6 +40,8 @@ public abstract class LibActivity<P extends IPresenter> extends RxAppCompatActiv
 
     protected abstract IVaryViewHelperController initVaryViewHelperController();
 
+    private Unbinder mUnbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +51,19 @@ public abstract class LibActivity<P extends IPresenter> extends RxAppCompatActiv
             e.printStackTrace();
         }
         setContentView(getLayoutId());
-        ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
         viewController = initVaryViewHelperController();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
+            mUnbinder.unbind();
+        this.mUnbinder = null;
         if (presenter != null)
             presenter.onDestroy();
+        this.presenter = null;
     }
 
     @Override
@@ -106,12 +113,12 @@ public abstract class LibActivity<P extends IPresenter> extends RxAppCompatActiv
 
     @Override
     public void showToast(String msg) {
-        T.showShortToastSafe(getHulkActivity(),msg);
+        T.showShortToastSafe(getHulkActivity(), msg);
     }
 
     @Override
     public void showToast(int msg) {
-        T.show(getHulkActivity(),msg);
+        T.show(getHulkActivity(), msg);
     }
 
     @Override

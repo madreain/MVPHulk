@@ -19,6 +19,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
@@ -43,6 +44,8 @@ public abstract class LibFragment<P extends IPresenter> extends RxFragment imple
 
     protected abstract IVaryViewHelperController initVaryViewHelperController();
 
+    private Unbinder mUnbinder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,7 +60,7 @@ public abstract class LibFragment<P extends IPresenter> extends RxFragment imple
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ButterKnife.bind(this, view);
+        mUnbinder=ButterKnife.bind(this, view);
         viewController = initVaryViewHelperController();
     }
 
@@ -65,8 +68,12 @@ public abstract class LibFragment<P extends IPresenter> extends RxFragment imple
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
+            mUnbinder.unbind();
+        this.mUnbinder = null;
         if (presenter != null)
             presenter.onDestroy();
+        this.presenter = null;
     }
 
     @Override
