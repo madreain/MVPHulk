@@ -2,6 +2,7 @@
 apply from: "config.gradle"
 
 buildscript {
+    ext.kotlin_version = '1.3.0'
     repositories {
         mavenCentral() // add repository
         maven { url 'https://maven.google.com' }
@@ -11,6 +12,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
+        //kotlin
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         //上传到jcenter的相关配置
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'

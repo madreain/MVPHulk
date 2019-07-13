@@ -65,7 +65,7 @@ def getBaseUrl() {
 }
 
 def getCodeSuccess() {
-    return "\"" + String.valueOf(BASE_URL).trim() + "/\""
+    return "\"" + String.valueOf(CODE_SUCCESS).trim() + "/\""
 }
 
 dependencies {
@@ -93,5 +93,13 @@ dependencies {
     //dagger2
     api rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    api rootProject.ext.dependencies["dagger2-android"]
     api rootProject.ext.dependencies["dagger2-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+    //butterknife
+    api rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    //arouter
+    api rootProject.ext.dependencies["arouter"]
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }

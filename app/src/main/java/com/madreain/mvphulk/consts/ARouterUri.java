@@ -6,6 +6,8 @@ package com.madreain.mvphulk.consts;
  * module：
  * description：
  */
-public class RouterUri {
+public class ARouterUri {
+
+    public static final String CityListActivity = "/mvphulk/ui/CityList";
 
 }

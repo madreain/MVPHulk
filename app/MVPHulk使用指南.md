@@ -39,7 +39,7 @@ implementation 'com.madreain:mvphulk:0.0.1'
 
 # 2.dagger2和mvp结合（app的build.gradle需引入相关dagger2库）
 1.)AppModule的创建(Application)
-2.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了application下面，我在项目开发中会使用到Template模版开发）
+2.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
 3.)Appcomponent的创建
 4.)以及注入初始化代码。 app级别的当然在application里面出初始化
 
