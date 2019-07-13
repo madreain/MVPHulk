@@ -106,7 +106,9 @@ dependencies {
     //dagger2
     api rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+    api rootProject.ext.dependencies["dagger2-android"]
     api rootProject.ext.dependencies["dagger2-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
     //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
     api rootProject.ext.dependencies["javax.annotation"]
     //butterknife

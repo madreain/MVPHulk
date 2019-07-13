@@ -22,8 +22,12 @@ public class EventBusUtils {
      * @param subscriber 订阅者对象
      */
     public static void register(Object subscriber) {
-        if (!EventBus.getDefault().isRegistered(subscriber)) {
-            EventBus.getDefault().register(subscriber);
+        if (!isRegister(subscriber)) {
+            try {
+                EventBus.getDefault().register(subscriber);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -33,7 +37,14 @@ public class EventBusUtils {
      * @param subscriber 订阅者对象
      */
     public static void unRegister(Object subscriber) {
-        EventBus.getDefault().unregister(subscriber);
+        if (!isRegister(subscriber)) {
+            try {
+                EventBus.getDefault().unregister(subscriber);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     /**
