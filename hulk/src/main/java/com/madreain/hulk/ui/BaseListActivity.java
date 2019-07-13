@@ -35,7 +35,6 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
     private boolean mLoadMoreEnable = true;
     protected int loadPageNum = 1;//当前正在加载的page，但是当前page接口还未做出响应
     private boolean refreshEnable = true;//是否能进行下拉刷新
-
     @Inject
     public A adapter;
 

@@ -2,6 +2,7 @@ package com.madreain.mvphulk.application;
 
 import com.madreain.hulk.application.ApiModule;
 import com.madreain.hulk.application.IAppComponent;
+import com.madreain.mvphulk.BuilderModule;
 
 import javax.inject.Singleton;
 

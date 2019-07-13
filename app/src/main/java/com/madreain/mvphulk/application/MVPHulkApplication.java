@@ -67,6 +67,13 @@ public class MVPHulkApplication extends HulkApplication {
         ViewTarget.setTagId(R.id.glide_tag);
         //log日子开关
         initLog();
+        //ARouter
+        initArouter();
+    }
+
+    private void initArouter() {
+        //ARouter的初始化
+        ARouter.init(this);
     }
 
     private void initLog() {
