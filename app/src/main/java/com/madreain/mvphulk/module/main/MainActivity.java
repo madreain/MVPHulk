@@ -1,20 +1,29 @@
-package com.madreain.mvphulk;
+package com.madreain.mvphulk.module.main;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.madreain.hulk.ui.BaseActivity;
 import com.madreain.hulk.utils.ARouterUtils;
+import com.madreain.mvphulk.R;
 import com.madreain.mvphulk.consts.ARouterUri;
-import com.madreain.mvphulk.module.CityList.CityListActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * @author madreain
+ * @date 2019/2/20.
+ * module：
+ * description：
+ */
+
+@Route(path = ARouterUri.MainActivity)
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
 
     @BindView(R.id.tv1)
     TextView tv1;
@@ -28,11 +37,20 @@ public class MainActivity extends AppCompatActivity {
     TextView tv5;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public View getReplaceView() {
+        return null;
+    }
+
 
     @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5})
     public void onViewClicked(View view) {
@@ -41,18 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 ARouterUtils.build(ARouterUri.CityListActivity).navigation();
                 break;
             case R.id.tv2:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
                 break;
             case R.id.tv3:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
                 break;
             case R.id.tv4:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
                 break;
             case R.id.tv5:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
+                break;
+            default:
                 break;
         }
     }
+
 
 }
