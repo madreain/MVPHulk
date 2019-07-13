@@ -1,5 +1,6 @@
 package com.madreain.mvphulk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.madreain.hulk.utils.ARouterUtils;
 import com.madreain.mvphulk.consts.ARouterUri;
+import com.madreain.mvphulk.module.CityList.CityListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

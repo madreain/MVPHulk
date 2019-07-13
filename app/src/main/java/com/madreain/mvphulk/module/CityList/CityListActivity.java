@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.madreain.hulk.ui.BaseListActivity;
-import com.madreain.mvphulk.application.DaggerAppcomponent;
 import com.madreain.mvphulk.consts.ARouterUri;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
