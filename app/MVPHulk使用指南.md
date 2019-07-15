@@ -144,4 +144,6 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 10.继承IVaryViewHelperController，实现自定义View的替换
 
+# 11.BaseListActivity\BaseListFragment对应请求接口的RSubscriberList
+     BaseActivity\BaseFragment对应请求接口的RSubscriber
 
