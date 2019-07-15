@@ -17,6 +17,7 @@ import com.madreain.hulk.view.baseviewholder.HulkViewHolder;
 import com.madreain.hulk.view.loadmore.HulkLoadMoreView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
@@ -77,26 +78,27 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
 
     @Override
     public void init(Bundle savedInstanceState) {
-        adapter.setPreLoadNumber(10);
-        adapter.setLoadMoreView(new HulkLoadMoreView());
         getRecyclerView().setLayoutManager(getLayoutManager());
         getRecyclerView().setAdapter(adapter);
-        getSmartRefreshLayout().setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                adapter.setEnableLoadMore(false);
-                loadPageNum = 1;
-                loadPageListData(1);
-            }
-        });
         getSmartRefreshLayout().setEnabled(refreshEnable);
+        if(refreshEnable){
+            getSmartRefreshLayout().setOnRefreshListener(new OnRefreshListener() {
+                @Override
+                public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                    loadPageNum = 1;
+                    loadPageListData(1);
+                }
+            });
+        }
         _init(savedInstanceState);
         if (mLoadMoreEnable) {
-            adapter.setOnLoadMoreListener(() -> {
-                loadPageNum = pageNum + 1;
-                loadPageListData(pageNum + 1);
-                getSmartRefreshLayout().setEnabled(false);
-            }, getRecyclerView());
+            getSmartRefreshLayout().setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                    loadPageNum = pageNum + 1;
+                    loadPageListData(pageNum + 1);
+                }
+            });
         }
         if (adapter instanceof BaseAdapter) {
             ((BaseAdapter) adapter).addClickListener();
@@ -120,13 +122,12 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
         if (refreshEnable) {
             getSmartRefreshLayout().setEnabled(true);
         }
-        adapter.setEnableLoadMore(true);
         if (pageNum == 1) {
             getSmartRefreshLayout().finishRefresh();
             adapter.setNewData(datas);
         } else {
+            getSmartRefreshLayout().finishLoadMore();
             adapter.addData(datas);
-            adapter.loadMoreComplete();
         }
     }
 
@@ -135,8 +136,7 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
         if (refreshEnable) {
             getSmartRefreshLayout().setEnabled(true);
         }
-        adapter.setEnableLoadMore(true);
-        adapter.loadMoreEnd();
+        getSmartRefreshLayout().finishLoadMoreWithNoMoreData();
     }
 
     public void showLoadMoreError() {
@@ -144,8 +144,7 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
         if (refreshEnable) {
             getSmartRefreshLayout().setEnabled(true);
         }
-        adapter.setEnableLoadMore(true);
-        adapter.loadMoreFail();
+        getSmartRefreshLayout().finishLoadMore(false);
     }
 
     @Override
