@@ -10,6 +10,7 @@ import com.madreain.hulk.http.exception.ReturnCodeException;
 import com.madreain.hulk.http.interceptor.IVersionDiffInterceptor;
 import com.madreain.hulk.mvp.IRes;
 import com.madreain.hulk.mvp.IView;
+import com.madreain.hulk.utils.LogUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
@@ -79,6 +80,8 @@ public class Transformer {
                 } else {//有网络
                     //版本号不一致
 //                    isVersionDiff(iView, baseRes.getVersion());
+                    LogUtils.d("11111111","成功码： "+HulkConfig.getRetSuccess());
+                    LogUtils.d("11111111","返回码： "+baseRes.getCode());
                     if (HulkConfig.getRetSuccess().equals(baseRes.getCode())) {
                         T t = baseRes.getResult();
                         if (t == null || (t instanceof List && ((List) t).size() == 0)) {

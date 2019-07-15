@@ -50,7 +50,7 @@ public class MVPHulkApplication extends HulkApplication {
         //配置项
         HulkConfig.builder()
                 .setApplication(this)
-                .setRetSuccess(BuildConfig.CODE_SUCCESS)
+                .setRetSuccess(String.valueOf(BuildConfig.CODE_SUCCESS))
                 .setBaseUrl(BuildConfig.BASE_URL)
                 .setChangeBaseUrl(BuildConfig.OPEN_CHANGE)
                 .setOpenLog(BuildConfig.OPEN_LOG)
