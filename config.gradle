@@ -71,7 +71,6 @@ ext {
             "dagger2-android-processor": "com.google.dagger:dagger-android-processor:${version["dagger2SdkVersion"]}",
             //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
             "javax.annotation"         : "org.glassfish:javax.annotation:10.0-b28",
-            "kotlin"                   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             //butterknife
             "butterknife"              : "com.jakewharton:butterknife:${version["butterknifeSdkVersion"]}",
             "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",

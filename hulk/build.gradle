@@ -1,6 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -119,7 +117,6 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
     //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
     api rootProject.ext.dependencies["javax.annotation"]
-    api rootProject.ext.dependencies["kotlin"]
     //butterknife
     api rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
