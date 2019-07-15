@@ -21,6 +21,7 @@ import retrofit2.Retrofit;
 public class HulkConfig {
     private static Application application;
     private static String baseUrl;//服务地址
+    //这里可根据自身项目将增删改查不同返回正常态的值进行区分，这里具体看公司项目决定
     private static String retSuccess;//returnCode 正常态的值
     private static boolean logOpen;//日志开关
     private static boolean changeBaseUrl;//切换环境
