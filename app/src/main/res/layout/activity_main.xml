@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="网络异常" />
+        android:text="网络错误" />
 
     <TextView
         android:id="@+id/tv5"

@@ -140,4 +140,5 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+# 9.MVPHulkTemplate使用，请在包名下使用创建
 
