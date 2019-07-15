@@ -65,9 +65,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
                 break;
             case R.id.tv4:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
+                ARouterUtils.build(ARouterUri.SearchCityActivity).navigation();
                 break;
             case R.id.tv5:
+                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
                 break;
             default:
                 break;
