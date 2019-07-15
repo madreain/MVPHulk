@@ -1,10 +1,5 @@
 package com.madreain.mvphulk.application;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.ContentProvider;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -26,7 +21,6 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
-import dagger.android.AndroidInjector;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
