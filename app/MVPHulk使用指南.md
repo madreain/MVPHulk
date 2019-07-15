@@ -142,3 +142,6 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 9.MVPHulkTemplate使用，请在包名下使用创建
 
+# 10.继承IVaryViewHelperController，实现自定义View的替换
+
+

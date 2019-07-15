@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 /**
  * @author madreain
- * @date 2019/2/20.
+ * @date 2019-07-15.
  * module：
  * description：
  */
@@ -35,6 +35,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView tv4;
     @BindView(R.id.tv5)
     TextView tv5;
+    @BindView(R.id.tv6)
+    TextView tv6;
 
     @Override
     public int getLayoutId() {
@@ -52,7 +54,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
 
-    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5})
+    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv1:
@@ -62,12 +64,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 ARouterUtils.build(ARouterUri.RefreshCityListActivity).navigation();
                 break;
             case R.id.tv3:
-                break;
-            case R.id.tv4:
                 ARouterUtils.build(ARouterUri.SearchCityActivity).navigation();
                 break;
-            case R.id.tv5:
+            case R.id.tv4:
                 ARouterUtils.build(ARouterUri.CityListActivity).navigation();
+                break;
+            case R.id.tv5:
+                ARouterUtils.build(ARouterUri.CustomActivity).navigation();
+                break;
+            case R.id.tv6:
+                ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
                 break;
             default:
                 break;

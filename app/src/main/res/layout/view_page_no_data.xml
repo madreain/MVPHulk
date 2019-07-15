@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <com.madreain.hulk.view.avloading.AVLoadingIndicatorView
+    <ImageView
+        android:id="@+id/iv_no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:indicatorColor="@color/colorAccent"
-        />
+        android:layout_marginTop="@dimen/dp150"
+        android:src="@mipmap/mno_data" />
 
     <TextView
-        android:id="@+id/tv_msg"
+        android:id="@+id/tv_no_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/loading"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/sp18"
-        android:visibility="gone" />
+        android:layout_marginTop="@dimen/dp30"
+        android:text="@string/no_data"
+        android:textColor="@color/mA2A2A2"
+        android:textSize="@dimen/sp14" />
+
 </LinearLayout>

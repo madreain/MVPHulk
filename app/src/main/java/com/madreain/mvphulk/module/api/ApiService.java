@@ -2,6 +2,8 @@ package com.madreain.mvphulk.module.api;
 
 import com.madreain.hulk.mvp.BaseRes;
 import com.madreain.mvphulk.module.CityList.CityListListData;
+import com.madreain.mvphulk.module.Custom.CustomListData;
+import com.madreain.mvphulk.module.CustomNoData.CustomNoDataData;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListListData;
 import com.madreain.mvphulk.module.SearchCity.SearchCityData;
 
@@ -27,5 +29,11 @@ public interface ApiService {
 
     @GET("api/address/search?type=0&")
     Flowable<BaseRes<List<SearchCityData>>> searchCity(@Query("value") String value);
+
+    @GET("api/address/list")
+    Flowable<BaseRes<List<CustomListData>>> getCCityList();
+
+    @GET("api/address/search?type=0&")
+    Flowable<BaseRes<List<CustomNoDataData>>> searchCustomCity(@Query("value") String value);
 
 }

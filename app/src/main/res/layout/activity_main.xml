@@ -26,20 +26,28 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="list展示加载没有更多数据" />
+        android:text="暂无数据" />
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="暂无数据" />
+        android:text="断网模拟网络异常情况，网络错误" />
 
     <TextView
         android:id="@+id/tv5"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="断网模拟网络异常情况，网络错误" />
+        android:text="自定义View替换(断网查看网络异常情况)" />
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="自定义View替换(暂无数据)" />
+
 
 </LinearLayout>

@@ -12,5 +12,7 @@ public class ARouterUri {
     public static final String CityListActivity = "/mvphulk/ui/CityList";
     public static final String RefreshCityListActivity = "/mvphulk/ui/RefreshCityList";
     public static final String SearchCityActivity = "/mvphulk/ui/SearchCity";
+    public static final String CustomActivity = "/mvphulk/ui/Custom";
+    public static final String CustomNoDataActivity = "/mvphulk/ui/CustomNoData";
 
 }
