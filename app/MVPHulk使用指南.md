@@ -38,10 +38,9 @@ implementation 'com.madreain:mvphulk:0.0.1'
 ⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，需引入MultiDex来解决这个问题
 
 # 2.dagger2和mvp结合（app的build.gradle需引入相关dagger2库）
-1.)AppModule的创建(Application)
-2.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
-3.)Appcomponent的创建
-4.)以及注入初始化代码。 app级别的当然在application里面出初始化
+1.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
+2.)Appcomponent的创建(Application)
+3.)以及注入初始化代码。 app级别的当然在application里面出初始化
 
 # 3.配置相关的HulkConfig
 
@@ -136,4 +135,9 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 7.生成的BuilderModule记得在进行注册
 ⚠️注意：Template模版会直接写入进去，可省略这步
+
+# 8.请求接口记得先添加权限
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 

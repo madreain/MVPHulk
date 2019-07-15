@@ -41,7 +41,7 @@ public class CityListActivity extends BaseListActivity<CityListPresenter, CityLi
 
     @Override
     public void loadPageListData(int pageNo) {
-        presenter.loadPageListData(pageNo);
+//        presenter.loadPageListData(pageNo);
     }
 
     @Override

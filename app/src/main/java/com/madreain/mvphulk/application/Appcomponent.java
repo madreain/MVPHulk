@@ -17,8 +17,10 @@ import retrofit2.Retrofit;
  * description：
  */
 @Singleton
-@Component(modules = {AndroidSupportInjectionModule.class, ApiModule.class, AppModule.class, BuilderModule.class})
+@Component(modules = {AndroidSupportInjectionModule.class, ApiModule.class, BuilderModule.class})
 public interface Appcomponent extends IAppComponent {
+
+    void inject(MVPHulkApplication mvpHulkApplication);
 
     Retrofit getRetrofit();
 

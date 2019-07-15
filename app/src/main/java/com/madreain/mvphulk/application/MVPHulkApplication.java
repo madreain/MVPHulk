@@ -43,7 +43,7 @@ public class MVPHulkApplication extends HulkApplication {
     @Override
     public void initHulkConfig() {
         //DaggerAppComponent的生成make project一下就行
-        appcomponent=DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).appModule(new AppModule(this)).build();
+        appcomponent=DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
         //消息拦截器
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -61,6 +61,7 @@ public class MVPHulkApplication extends HulkApplication {
                 .setGlideHeaderPlaceHolder(getResources().getDrawable(R.mipmap.ic_launcher))//默认头像占位图
                 .setRetrofit(appcomponent.getRetrofit())
                 .build();
+        appcomponent.inject(this);
         //application 上下文
         Utils.init(this);
         //Glide设置tag
