@@ -2,7 +2,6 @@ package com.madreain.mvphulk.module.api;
 
 import com.madreain.hulk.mvp.BaseRes;
 import com.madreain.mvphulk.module.CityList.CityListListData;
-import com.madreain.mvphulk.module.Lottery.LotteryListData;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListListData;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import retrofit2.http.Query;
  * @author madreain
  * @date 2019-07-06.
  * module：接口
- * description：
+ * description： 这里用的接口来自https://github.com/MZCretin/RollToolsApi，感谢MZCretin
  */
 public interface ApiService {
 
@@ -25,7 +24,5 @@ public interface ApiService {
     @GET("api/address/list")
     Flowable<BaseRes<List<RefreshCityListListData>>> getRefreshCityList();
 
-    @GET("api/lottery/ssq/lottery_list")
-    Flowable<BaseRes<List<LotteryListData>>> getLotteryList(@Query("page") long page);
 
 }
