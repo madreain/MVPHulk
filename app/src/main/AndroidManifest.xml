@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.madreain.mvphulk.module.CityList.CityListActivity"></activity>
+        <activity android:name=".module.RefreshCityList.RefreshCityListActivity"></activity>
+        <activity android:name=".module.CityList.CityListActivity" />
         <activity
-            android:name="com.madreain.mvphulk.module.main.MainActivity"
+            android:name=".module.main.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>

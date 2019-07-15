@@ -2,6 +2,8 @@ package com.madreain.mvphulk;
 
 import com.madreain.mvphulk.module.CityList.CityListActivity;
 import com.madreain.mvphulk.module.CityList.CityListModule;
+import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListActivity;
+import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListModule;
 import com.madreain.mvphulk.module.main.MainActivity;
 import com.madreain.mvphulk.module.main.MainModule;
 
@@ -22,5 +24,8 @@ public abstract class BuilderModule {
 
     @ContributesAndroidInjector(modules = CityListModule.class)
     abstract CityListActivity cityListActivity();
+
+    @ContributesAndroidInjector(modules = RefreshCityListModule.class)
+    abstract RefreshCityListActivity refreshCityListActivity();
 
 }

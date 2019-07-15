@@ -2,6 +2,7 @@ package com.madreain.mvphulk.module.api;
 
 import com.madreain.hulk.mvp.BaseRes;
 import com.madreain.mvphulk.module.CityList.CityListListData;
+import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListListData;
 
 import java.util.List;
 
@@ -19,5 +20,8 @@ public interface ApiService {
 
     @GET("api//address/list")
     Flowable<BaseRes<List<CityListListData>>> getCityList();
+
+    @GET("api//address/list")
+    Flowable<BaseRes<List<RefreshCityListListData>>> getRefreshCityList();
 
 }

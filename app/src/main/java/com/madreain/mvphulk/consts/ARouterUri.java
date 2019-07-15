@@ -8,7 +8,8 @@ package com.madreain.mvphulk.consts;
  */
 public class ARouterUri {
 
-    public static final String CityListActivity = "/mvphulk/ui/CityList";
     public static final String MainActivity = "/mvphulk/ui/MainActivity";
+    public static final String CityListActivity = "/mvphulk/ui/CityList";
+    public static final String RefreshCityListActivity = "/mvphulk/ui/RefreshCityList";
 
 }

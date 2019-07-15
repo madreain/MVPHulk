@@ -58,6 +58,7 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
      */
     public void setLoadMoreEnable(boolean moreEnable) {
         mLoadMoreEnable = moreEnable;
+        getSmartRefreshLayout().setEnableLoadMore(mLoadMoreEnable);
     }
 
     public void setRefreshEnable(boolean refreshEnable) {
