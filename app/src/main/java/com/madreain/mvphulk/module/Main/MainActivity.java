@@ -104,7 +104,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                navigation.setSelectedItemId(TabFragment.values()[position].menuId);
+                navigation.getMenu().getItem(position).setChecked(true);
+//                navigation.setSelectedItemId(TabFragment.values()[position].menuId);
             }
         });
     }
