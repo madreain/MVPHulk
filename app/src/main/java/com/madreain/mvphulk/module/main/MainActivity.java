@@ -2,11 +2,9 @@ package com.madreain.mvphulk.module.main;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.madreain.hulk.ui.BaseActivity;
 import com.madreain.hulk.utils.ARouterUtils;
 import com.madreain.mvphulk.R;
@@ -78,7 +76,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
                 break;
             case R.id.tv7:
-                ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
+                ARouterUtils.build(ARouterUri.CustomRefreshActivity).navigation();
                 break;
             default:
                 break;

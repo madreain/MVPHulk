@@ -6,6 +6,8 @@ import com.madreain.mvphulk.module.Custom.CustomActivity;
 import com.madreain.mvphulk.module.Custom.CustomModule;
 import com.madreain.mvphulk.module.CustomNoData.CustomNoDataActivity;
 import com.madreain.mvphulk.module.CustomNoData.CustomNoDataModule;
+import com.madreain.mvphulk.module.CustomRefresh.CustomRefreshActivity;
+import com.madreain.mvphulk.module.CustomRefresh.CustomRefreshModule;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListActivity;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListModule;
 import com.madreain.mvphulk.module.SearchCity.SearchCityActivity;
@@ -42,5 +44,8 @@ public abstract class BuilderModule {
 
     @ContributesAndroidInjector(modules = CustomNoDataModule.class)
     abstract CustomNoDataActivity customNoDataActivity();
+
+    @ContributesAndroidInjector(modules = CustomRefreshModule.class)
+    abstract CustomRefreshActivity customRefreshActivity();
 
 }
