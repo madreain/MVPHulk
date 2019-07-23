@@ -25,6 +25,6 @@ public class HomeModel extends BaseModel<ApiService> implements HomeContract.Mod
 
     @Override
     public Flowable<BaseRes<List<HomeListData>>> loadListDatas(int pageNo) {
-        return null;//接口调用 apiService.xxx
+        return apiService.getHomeCityList();//接口调用 apiService.xxx
     }
 }

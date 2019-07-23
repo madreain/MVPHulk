@@ -5,6 +5,7 @@ import com.madreain.mvphulk.module.CityList.CityListListData;
 import com.madreain.mvphulk.module.Custom.CustomListData;
 import com.madreain.mvphulk.module.CustomNoData.CustomNoDataData;
 import com.madreain.mvphulk.module.CustomRefresh.CustomRefreshListData;
+import com.madreain.mvphulk.module.Home.HomeListData;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListListData;
 import com.madreain.mvphulk.module.SearchCity.SearchCityData;
 
@@ -39,6 +40,9 @@ public interface ApiService {
 
     @GET("api/address/list")
     Flowable<BaseRes<List<CustomRefreshListData>>> getCustomRefreshCityList();
+
+    @GET("api/address/list")
+    Flowable<BaseRes<List<HomeListData>>> getHomeCityList();
 
 
 }

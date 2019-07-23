@@ -23,7 +23,7 @@ public class HomePresenter extends BasePresenter<HomeModel, HomeContract.View> {
 
     @Override
     public void onStart() {
-//        loadPageListData(1);
+        loadPageListData(1);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class HomeFragment extends BaseListFragment<HomePresenter, HomeAdapter<Ho
 
     @Override
     public void loadPageListData(int pageNo) {
-//        presenter.loadPageListData(pageNo);
+        presenter.loadPageListData(pageNo);
     }
 
     @Override

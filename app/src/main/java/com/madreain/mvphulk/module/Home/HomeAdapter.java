@@ -27,6 +27,6 @@ public class HomeAdapter<V extends IView> extends BaseAdapter<HomeListData, Home
 
     @Override
     protected void convert(HulkViewHolder helper, HomeListData data) {
-        helper.setText(R.id.tv, "测试");
+        helper.setText(R.id.tv, data.getName());
     }
 }
