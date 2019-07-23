@@ -126,7 +126,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         ((ViewPager) findViewById(R.id.viewpager)).setCurrentItem(TabFragment.from(menuItem.getItemId()).ordinal());
-        return true;
+        return false;
     }
 
     @Override
