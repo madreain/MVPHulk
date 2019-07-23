@@ -40,7 +40,6 @@ public abstract class BuilderModule {
     @ContributesAndroidInjector(modules = CustomModule.class)
     abstract CustomActivity customActivity();
 
-
     @ContributesAndroidInjector(modules = CustomNoDataModule.class)
     abstract CustomNoDataActivity customNoDataActivity();
 
