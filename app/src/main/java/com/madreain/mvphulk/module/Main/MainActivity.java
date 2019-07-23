@@ -1,7 +1,6 @@
 package com.madreain.mvphulk.module.Main;
 
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -18,6 +17,9 @@ import com.madreain.mvphulk.module.Home.HomeFragment;
 import com.madreain.mvphulk.module.Hulk.HulkFragment;
 import com.madreain.mvphulk.module.My.MyFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -31,55 +33,12 @@ import butterknife.OnClick;
 @Route(path = ARouterUri.MainActivity)
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private enum TabFragment {
-        home(R.id.navigation_home, HomeFragment.class),
-        hulk(R.id.navigation_hulk, HulkFragment.class),
-        my(R.id.navigation_my, MyFragment.class),
-        ;
-
-        private Fragment fragment;
-        private final int menuId;
-        private final Class<? extends Fragment> clazz;
-
-        TabFragment(@IdRes int menuId, Class<? extends Fragment> clazz) {
-            this.menuId = menuId;
-            this.clazz = clazz;
-        }
-
-        @NonNull
-        public Fragment fragment() {
-            if (fragment == null) {
-                try {
-                    fragment = clazz.newInstance();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    fragment = new Fragment();
-                }
-            }
-            return fragment;
-        }
-
-        public static TabFragment from(int itemId) {
-            for (TabFragment fragment : values()) {
-                if (fragment.menuId == itemId) {
-                    return fragment;
-                }
-            }
-            return home;
-        }
-
-        public static void onDestroy() {
-            for (TabFragment fragment : values()) {
-                fragment.fragment = null;
-            }
-        }
-
-    }
-
     @BindView(R.id.viewpager)
     ViewPager viewPager;
     @BindView(R.id.navigation)
     BottomNavigationView navigation;
+
+    List<Fragment> fragmentList;
 
     @Override
     public int getLayoutId() {
@@ -88,22 +47,27 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void init(Bundle savedInstanceState) {
+        fragmentList = new ArrayList<>();
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new HulkFragment());
+        fragmentList.add(new MyFragment());
         navigation.setOnNavigationItemSelectedListener(this);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
-                return TabFragment.values().length;
+                return fragmentList.size();
             }
 
             @Override
             public Fragment getItem(int position) {
-                return TabFragment.values()[position].fragment();
+                return fragmentList.get(position);
             }
         });
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                navigation.setSelectedItemId(TabFragment.values()[position].menuId);
+                navigation.getMenu().getItem(position).setChecked(true);
             }
         });
     }
@@ -125,13 +89,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        ((ViewPager) findViewById(R.id.viewpager)).setCurrentItem(TabFragment.from(menuItem.getItemId()).ordinal());
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_home:
+                viewPager.setCurrentItem(0);
+                return true;
+            case R.id.navigation_hulk:
+                viewPager.setCurrentItem(1);
+                return true;
+            case R.id.navigation_my:
+                viewPager.setCurrentItem(2);
+                return true;
+            default:
+                break;
+        }
         return false;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        TabFragment.onDestroy();
-    }
 }
