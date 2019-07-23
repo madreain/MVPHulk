@@ -37,6 +37,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     TextView tv5;
     @BindView(R.id.tv6)
     TextView tv6;
+    @BindView(R.id.tv7)
+    TextView tv7;
 
     @Override
     public int getLayoutId() {
@@ -54,7 +56,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     }
 
 
-    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6})
+    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6, R.id.tv7})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv1:
@@ -73,6 +75,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 ARouterUtils.build(ARouterUri.CustomActivity).navigation();
                 break;
             case R.id.tv6:
+                ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
+                break;
+            case R.id.tv7:
                 ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
                 break;
             default:

@@ -49,5 +49,11 @@
         android:gravity="center"
         android:text="自定义View替换(暂无数据)" />
 
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="自定义刷新加载" />
 
 </LinearLayout>
