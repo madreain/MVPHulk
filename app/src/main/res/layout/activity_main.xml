@@ -7,53 +7,18 @@
     android:orientation="vertical"
     tools:context=".module.Main.MainActivity">
 
-    <TextView
-        android:id="@+id/tv1"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="list展示能刷新能加载更多" />
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-    <TextView
-        android:id="@+id/tv2"
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="list展示只能刷新" />
-
-    <TextView
-        android:id="@+id/tv3"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="暂无数据" />
-
-    <TextView
-        android:id="@+id/tv4"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="断网模拟网络异常情况，网络错误" />
-
-    <TextView
-        android:id="@+id/tv5"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="自定义View替换(断网查看网络异常情况)" />
-
-    <TextView
-        android:id="@+id/tv6"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="自定义View替换(暂无数据)" />
-
-    <TextView
-        android:id="@+id/tv7"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="自定义刷新加载" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/navigation" />
 
 </LinearLayout>

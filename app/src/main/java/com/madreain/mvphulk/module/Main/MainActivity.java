@@ -1,14 +1,22 @@
 package com.madreain.mvphulk.module.Main;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.madreain.hulk.ui.BaseActivity;
-import com.madreain.hulk.utils.ARouterUtils;
 import com.madreain.mvphulk.R;
 import com.madreain.mvphulk.consts.ARouterUri;
+import com.madreain.mvphulk.module.Home.HomeFragment;
+import com.madreain.mvphulk.module.Hulk.HulkFragment;
+import com.madreain.mvphulk.module.My.MyFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -21,22 +29,57 @@ import butterknife.OnClick;
  */
 
 @Route(path = ARouterUri.MainActivity)
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.tv1)
-    TextView tv1;
-    @BindView(R.id.tv2)
-    TextView tv2;
-    @BindView(R.id.tv3)
-    TextView tv3;
-    @BindView(R.id.tv4)
-    TextView tv4;
-    @BindView(R.id.tv5)
-    TextView tv5;
-    @BindView(R.id.tv6)
-    TextView tv6;
-    @BindView(R.id.tv7)
-    TextView tv7;
+    private enum TabFragment {
+        home(R.id.navigation_home, HomeFragment.class),
+        hulk(R.id.navigation_hulk, HulkFragment.class),
+        my(R.id.navigation_my, MyFragment.class),
+        ;
+
+        private Fragment fragment;
+        private final int menuId;
+        private final Class<? extends Fragment> clazz;
+
+        TabFragment(@IdRes int menuId, Class<? extends Fragment> clazz) {
+            this.menuId = menuId;
+            this.clazz = clazz;
+        }
+
+        @NonNull
+        public Fragment fragment() {
+            if (fragment == null) {
+                try {
+                    fragment = clazz.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fragment = new Fragment();
+                }
+            }
+            return fragment;
+        }
+
+        public static TabFragment from(int itemId) {
+            for (TabFragment fragment : values()) {
+                if (fragment.menuId == itemId) {
+                    return fragment;
+                }
+            }
+            return home;
+        }
+
+        public static void onDestroy() {
+            for (TabFragment fragment : values()) {
+                fragment.fragment = null;
+            }
+        }
+
+    }
+
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.navigation)
+    BottomNavigationView navigation;
 
     @Override
     public int getLayoutId() {
@@ -45,43 +88,51 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void init(Bundle savedInstanceState) {
+        navigation.setOnNavigationItemSelectedListener(this);
+        viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public int getCount() {
+                return TabFragment.values().length;
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                return TabFragment.values()[position].fragment();
+            }
+        });
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                navigation.setSelectedItemId(TabFragment.values()[position].menuId);
+            }
+        });
 
     }
 
     @Override
     public View getReplaceView() {
-        return null;
+        return viewPager;
     }
 
-
-    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6, R.id.tv7})
+    @OnClick({R.id.viewpager, R.id.navigation})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv1:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
+            case R.id.viewpager:
                 break;
-            case R.id.tv2:
-                ARouterUtils.build(ARouterUri.RefreshCityListActivity).navigation();
-                break;
-            case R.id.tv3:
-                ARouterUtils.build(ARouterUri.SearchCityActivity).navigation();
-                break;
-            case R.id.tv4:
-                ARouterUtils.build(ARouterUri.CityListActivity).navigation();
-                break;
-            case R.id.tv5:
-                ARouterUtils.build(ARouterUri.CustomActivity).navigation();
-                break;
-            case R.id.tv6:
-                ARouterUtils.build(ARouterUri.CustomNoDataActivity).navigation();
-                break;
-            case R.id.tv7:
-                ARouterUtils.build(ARouterUri.CustomRefreshActivity).navigation();
-                break;
-            default:
+            case R.id.navigation:
                 break;
         }
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        ((ViewPager) findViewById(R.id.viewpager)).setCurrentItem(TabFragment.from(menuItem.getItemId()).ordinal());
+        return true;
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        TabFragment.onDestroy();
+    }
 }

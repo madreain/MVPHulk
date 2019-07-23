@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.multidex.MultiDex;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.request.target.ViewTarget;
@@ -90,6 +91,8 @@ public class MVPHulkApplication extends HulkApplication {
 
     //static 代码段可以防止内存泄露
     static {
+        //启用矢量图兼容
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
