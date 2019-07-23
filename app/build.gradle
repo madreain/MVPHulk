@@ -70,36 +70,16 @@ def getCodeSuccess() {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    //support
-//    api(rootProject.ext.dependencies["support-v4"]) {
-//        exclude module: 'support-annotations'
-//    }
-//    api(rootProject.ext.dependencies["appcompat-v7"]) {
-//        exclude module: 'support-annotations'
-//    }
-//    api rootProject.ext.dependencies["design"]
-//    api rootProject.ext.dependencies["constraint-layout"]
-//    api(rootProject.ext.dependencies["recyclerview-v7"]) {
-//        exclude module: 'support-annotations'
-//    }
-//    api rootProject.ext.dependencies["annotations"]
     //multidex
     api rootProject.ext.dependencies["multidex"]
-
     //hulk引入
     api project(':hulk')
-
     //dagger2
-//    api rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-//    api rootProject.ext.dependencies["dagger2-android"]
-//    api rootProject.ext.dependencies["dagger2-android-support"]
     annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
     //butterknife
     api rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     //arouter
-//    api rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 }
