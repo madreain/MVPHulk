@@ -70,6 +70,8 @@ def getCodeSuccess() {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //constraint-layout
+    api rootProject.ext.dependencies["constraint-layout"]
     //multidex
     api rootProject.ext.dependencies["multidex"]
     //hulk引入
