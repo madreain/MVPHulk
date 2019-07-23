@@ -21,7 +21,7 @@
         <activity android:name=".module.RefreshCityList.RefreshCityListActivity" />
         <activity android:name=".module.CityList.CityListActivity" />
         <activity
-            android:name=".module.main.MainActivity"
+            android:name=".module.Main.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>

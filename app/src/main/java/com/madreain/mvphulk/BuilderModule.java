@@ -8,12 +8,18 @@ import com.madreain.mvphulk.module.CustomNoData.CustomNoDataActivity;
 import com.madreain.mvphulk.module.CustomNoData.CustomNoDataModule;
 import com.madreain.mvphulk.module.CustomRefresh.CustomRefreshActivity;
 import com.madreain.mvphulk.module.CustomRefresh.CustomRefreshModule;
+import com.madreain.mvphulk.module.Home.HomeFragment;
+import com.madreain.mvphulk.module.Home.HomeModule;
+import com.madreain.mvphulk.module.Hulk.HulkFragment;
+import com.madreain.mvphulk.module.Hulk.HulkModule;
+import com.madreain.mvphulk.module.My.MyFragment;
+import com.madreain.mvphulk.module.My.MyModule;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListActivity;
 import com.madreain.mvphulk.module.RefreshCityList.RefreshCityListModule;
 import com.madreain.mvphulk.module.SearchCity.SearchCityActivity;
 import com.madreain.mvphulk.module.SearchCity.SearchCityModule;
-import com.madreain.mvphulk.module.main.MainActivity;
-import com.madreain.mvphulk.module.main.MainModule;
+import com.madreain.mvphulk.module.Main.MainActivity;
+import com.madreain.mvphulk.module.Main.MainModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -29,6 +35,16 @@ public abstract class BuilderModule {
 
     @ContributesAndroidInjector(modules = MainModule.class)
     abstract MainActivity mainActivity();
+
+    @ContributesAndroidInjector(modules = HomeModule.class)
+    abstract HomeFragment homeFragment();
+
+    @ContributesAndroidInjector(modules = HulkModule.class)
+    abstract HulkFragment hulkFragment();
+
+    @ContributesAndroidInjector(modules = MyModule.class)
+    abstract MyFragment myFragment();
+
 
     @ContributesAndroidInjector(modules = CityListModule.class)
     abstract CityListActivity cityListActivity();

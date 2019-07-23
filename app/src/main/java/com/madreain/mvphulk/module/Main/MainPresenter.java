@@ -1,4 +1,4 @@
-package com.madreain.mvphulk.module.main;
+package com.madreain.mvphulk.module.Main;
 
 import com.madreain.hulk.mvp.BasePresenter;
 

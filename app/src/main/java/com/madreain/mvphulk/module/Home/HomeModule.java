@@ -1,5 +1,4 @@
-package com.madreain.mvphulk.module.main;
-
+package com.madreain.mvphulk.module.Home;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,12 +9,14 @@ import dagger.Provides;
  * module：
  * description：
  */
+
 @Module
-public class MainModule {
+public class HomeModule {
 
     @Provides
-    MainContract.View getView(MainActivity view) {
+    HomeContract.View getView(HomeFragment view) {
         return view;
     }
+
 
 }
