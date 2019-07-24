@@ -129,8 +129,6 @@ dependencies {
     api rootProject.ext.dependencies["brvah"]
     //SmartRefreshLayout
     api rootProject.ext.dependencies["SmartRefreshLayout"]
-    //lottie
-    api rootProject.ext.dependencies["lottie"]
     //topsnackbar
     api rootProject.ext.dependencies["topsnackbar"]
 }

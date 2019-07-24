@@ -1,5 +1,8 @@
 package com.madreain.hulk.adapter;
 
+import android.content.Context;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.view.baseviewholder.HulkViewHolder;
 
@@ -13,7 +16,8 @@ import javax.inject.Inject;
  * module：
  * description：
  */
-public abstract class BaseAdapter<T, V extends IView> extends BaseLibAdapter<T, HulkViewHolder> {
+public abstract class BaseAdapter<T, V extends IView> extends BaseQuickAdapter<T, HulkViewHolder> {
+
     public BaseAdapter(int layoutResId, List<T> data) {
         super(layoutResId, data);
     }
@@ -21,8 +25,13 @@ public abstract class BaseAdapter<T, V extends IView> extends BaseLibAdapter<T, 
     @Inject
     public V view;
 
-    @Override
-    public void addClickListener() {
+    public Context getContext() {
+        return mContext;
+    }
+
+    public void clearData() {
+        getData().clear();
+        notifyDataSetChanged();
     }
 
 }

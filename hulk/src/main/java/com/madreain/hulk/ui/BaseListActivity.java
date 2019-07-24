@@ -14,7 +14,6 @@ import com.madreain.hulk.mvp.BasePresenter;
 import com.madreain.hulk.mvp.IListView;
 import com.madreain.hulk.utils.ListUtil;
 import com.madreain.hulk.view.baseviewholder.HulkViewHolder;
-import com.madreain.hulk.view.loadmore.HulkLoadMoreView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -100,11 +99,6 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
                     loadPageListData(loadPageNum);
                 }
             });
-        }
-        if (adapter instanceof BaseAdapter) {
-            ((BaseAdapter) adapter).addClickListener();
-        } else if (adapter instanceof BaseMultiAdapter) {
-            ((BaseMultiAdapter) adapter).addClickListener();
         }
     }
 
