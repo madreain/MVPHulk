@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.madreain.hulk.ui.BaseFragment;
 import com.madreain.hulk.utils.ARouterUtils;
 import com.madreain.mvphulk.R;
+import com.madreain.mvphulk.consts.ARouterKey;
 import com.madreain.mvphulk.consts.ARouterUri;
+import com.madreain.mvphulk.module.Common.CommonDialogFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,20 +28,6 @@ public class HulkFragment extends BaseFragment<HulkPresenter> implements HulkCon
 
     @BindView(R.id.fragment_hulk)
     LinearLayout prelativeLayout;
-    @BindView(R.id.tv1)
-    TextView tv1;
-    @BindView(R.id.tv2)
-    TextView tv2;
-    @BindView(R.id.tv3)
-    TextView tv3;
-    @BindView(R.id.tv4)
-    TextView tv4;
-    @BindView(R.id.tv5)
-    TextView tv5;
-    @BindView(R.id.tv6)
-    TextView tv6;
-    @BindView(R.id.tv7)
-    TextView tv7;
 
     @Override
     public int getLayoutId() {
@@ -58,7 +46,7 @@ public class HulkFragment extends BaseFragment<HulkPresenter> implements HulkCon
         return prelativeLayout;
     }
 
-    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6, R.id.tv7})
+    @OnClick({R.id.tv1, R.id.tv2, R.id.tv3, R.id.tv4, R.id.tv5, R.id.tv6, R.id.tv7, R.id.tv8})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv1:
@@ -81,6 +69,27 @@ public class HulkFragment extends BaseFragment<HulkPresenter> implements HulkCon
                 break;
             case R.id.tv7:
                 ARouterUtils.build(ARouterUri.CustomRefreshActivity).navigation();
+                break;
+            case R.id.tv8:
+                CommonDialogFragment commonDialog = new CommonDialogFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(ARouterKey.CommonTitle, "提示标题");
+                bundle.putString(ARouterKey.CommonDesc, "提示内容");
+                bundle.putString(ARouterKey.CommonLeft, "取消");
+                bundle.putString(ARouterKey.CommonRight, "确定");
+                commonDialog.setArguments(bundle);
+                commonDialog.setOnLeftRightClickListener(new CommonDialogFragment.onLeftRightClickListener() {
+                    @Override
+                    public void onLeftClick() {
+
+                    }
+
+                    @Override
+                    public void onRightClick() {
+
+                    }
+                });
+                commonDialog.show(getChildFragmentManager(), CommonDialogFragment.class.getName() + "");
                 break;
             default:
                 break;

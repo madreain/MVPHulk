@@ -2,6 +2,8 @@ package com.madreain.mvphulk;
 
 import com.madreain.mvphulk.module.CityList.CityListActivity;
 import com.madreain.mvphulk.module.CityList.CityListModule;
+import com.madreain.mvphulk.module.Common.CommonDialogFragment;
+import com.madreain.mvphulk.module.Common.CommonModule;
 import com.madreain.mvphulk.module.Custom.CustomActivity;
 import com.madreain.mvphulk.module.Custom.CustomModule;
 import com.madreain.mvphulk.module.CustomNoData.CustomNoDataActivity;
@@ -64,4 +66,6 @@ public abstract class BuilderModule {
     @ContributesAndroidInjector(modules = CustomRefreshModule.class)
     abstract CustomRefreshActivity customRefreshActivity();
 
+    @ContributesAndroidInjector(modules = CommonModule.class)
+    abstract CommonDialogFragment commonDialogFragment();
 }
