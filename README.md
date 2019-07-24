@@ -1,9 +1,26 @@
 # MVPHulk Android MVP 快速集成方案
 
+---
+> MVPHulk是RxJava+Okhttp+Retrofit+Dagger+MVP框架，Rxlifecycle用于生命周期的管理，
+
+
 ## 使用第三方库
 
-
-
+1. [`RxJava` JVM响应式扩展Reactive Extensions 用于使用Java VM的可观察序列编写异步和基于事件的程序的库](https://github.com/ReactiveX/RxJava)
+2. [`RxAndroid` 用于Android的RxJava绑定](https://github.com/ReactiveX/RxAndroid)
+3. [`Rxlifecycle` 使用RxJava的Android应用程序的生命周期处理API](https://github.com/trello/RxLifecycle)
+4. [`RxPermissions` RxJava支持的Android运行时权限](https://github.com/tbruyelle/RxPermissions)
+5. [`Okhttp` 一个用于Android、Kotlin和Java的HTTP客户端](https://github.com/square/okhttp)
+6. [`Retrofit` 为Android和Java提供安全的HTTP客户端](https://github.com/square/retrofit)
+7. [`Glide` 面向Android的图像加载和缓存库](https://github.com/bumptech/glide)
+8. [`Gson` 一个Java序列化/反序列化库，用于将Java对象转换为JSON并返回](https://github.com/google/gson)
+9. [`Dagger2` Android和Java的快速依赖注入器](https://github.com/google/dagger)
+10. [`Butterknife` View注入框架](https://github.com/JakeWharton/butterknife)
+11. [`EventBus` Android和Java的事件总线，简化了活动、片段、线程、服务等之间的通信。代码越少，质量越好](https://github.com/greenrobot/EventBus)
+12. [`ARouter` 帮助 Android App 进行组件化改造的路由框架](https://github.com/alibaba/ARouter)
+13. [`BaseRecyclerViewAdapterHelper` 功能强大、灵活的万能适配器](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+14. [`SmartRefreshLayout` Android智能下拉刷新框架](https://github.com/scwang90/SmartRefreshLayout)
+15. [`topsnackbar` Top Snackbar](https://github.com/AndreiD/TSnackBar)
 
 ## 项目配置介绍
 
