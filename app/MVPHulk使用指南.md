@@ -5,6 +5,15 @@ MVPHulk使用指南
 
 api project(':hulk')
 
+//dagger2
+annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+//butterknife
+api rootProject.ext.dependencies["butterknife"]
+annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+//arouter
+annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
 JAVA8的支持
 compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -17,7 +26,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {url "https://dl.bintray.com/wujun86/Madreain"}
     }
 }
 
@@ -30,8 +38,16 @@ compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
    }
 
-implementation 'com.madreain:mvphulk:0.0.1'
+api 'com.madreain:hulk:0.0.1'
 
+//dagger2
+annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
+annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+//butterknife
+api rootProject.ext.dependencies["butterknife"]
+annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+//arouter
+annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 
 项目入门介绍
 # 1.配置Application,继承HulkApplication
@@ -139,7 +155,7 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 # 6.利用HulkTemplate生成对应单Activity、单Fragment、ListActivity、ListFragment
 [MVPHulkTemplate](https://github.com/madreain/MVPHulkTemplate)
 
-# 7.生成的BuilderModule记得在进行注册
+# 7.第6步生成的记得在BuilderModule进行注册
 ⚠️注意：Template模版会直接写入进去，可省略这步
 
 # 8.请求接口记得先添加权限
@@ -150,7 +166,7 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 10.继承IVaryViewHelperController，实现自定义View的替换
 
-# 11.BRSubscriberList、RSubscriber对应三种接口交互方式
+# 11.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
      NULL（无交互）
      TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
      REPLACE（接口开始showLoading()---->>接口结束 :成功：restore(),失败：showError(); 失败、无数据情况会对应相应的ui展示）
