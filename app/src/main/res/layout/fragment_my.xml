@@ -6,4 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="单Fragmeny应用"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        />
+
 </RelativeLayout>
