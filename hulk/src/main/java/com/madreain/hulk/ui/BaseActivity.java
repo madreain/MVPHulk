@@ -120,6 +120,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
 
 
     //以下是ActionBar的封装
+
     /**
      * 初始化设置Title为""
      *
@@ -161,6 +162,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
 
     /**
      * ToolBar 返回按钮
+     *
      * @param toolbar
      * @param backIconId
      * @param listener
@@ -180,7 +182,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
      * @param titleText
      */
     public TextView setCenterTitleText(Toolbar toolbar, String titleText) {
-        TextView textView_title = toolbar.findViewById(R.id.textView_title);
+        TextView textView_title = toolbar.findViewById(R.id.tv_title);
         textView_title.setText(titleText);
         return textView_title;
     }
@@ -214,7 +216,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
      * @param listener
      */
     public TextView setToolBarLeftText(Toolbar toolbar, String leftText, View.OnClickListener listener) {
-        TextView tvLeft = toolbar.findViewById(R.id.textView_left);
+        TextView tvLeft = toolbar.findViewById(R.id.tv_left);
         if (!StringUtils.isEmpty(leftText)) {
             tvLeft.setText(leftText);
             tvLeft.setVisibility(View.VISIBLE);
@@ -233,7 +235,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
      * @param listener
      */
     public TextView setToolBarRightText(Toolbar toolbar, String rightText, View.OnClickListener listener) {
-        TextView tvRight = toolbar.findViewById(R.id.textView_right);
+        TextView tvRight = toolbar.findViewById(R.id.tv_right);
         if (!StringUtils.isEmpty(rightText)) {
             tvRight.setText(rightText);
             tvRight.setVisibility(View.VISIBLE);
@@ -243,5 +245,5 @@ public abstract class BaseActivity<P extends BasePresenter> extends LibActivity<
         tvRight.setOnClickListener(listener);
         return tvRight;
     }
-    
+
 }
