@@ -28,7 +28,7 @@ compileOptions {
     }
 ```
 
-##### 方法二：
+##### 方法二：设置依赖项
 1.项目的build.gradle
 
 ```
