@@ -26,6 +26,8 @@ import butterknife.BindView;
 @Route(path = ARouterUri.CustomActivity)
 public class CustomActivity extends BaseListActivity<CustomPresenter, CustomAdapter<CustomActivity>, CustomListData> implements CustomContract.View {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.recyclerView)
@@ -39,6 +41,8 @@ public class CustomActivity extends BaseListActivity<CustomPresenter, CustomAdap
 
     @Override
     public void _init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("自定义View替换(断网查看网络异常情况)");
         presenter.onStart();
     }
 

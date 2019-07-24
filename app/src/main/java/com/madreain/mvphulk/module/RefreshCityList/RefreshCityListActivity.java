@@ -24,6 +24,8 @@ import butterknife.BindView;
 @Route(path = ARouterUri.RefreshCityListActivity)
 public class RefreshCityListActivity extends BaseListActivity<RefreshCityListPresenter, RefreshCityListAdapter<RefreshCityListActivity>, RefreshCityListListData> implements RefreshCityListContract.View {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.recyclerView)
@@ -36,6 +38,8 @@ public class RefreshCityListActivity extends BaseListActivity<RefreshCityListPre
 
     @Override
     public void _init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("list展示只能刷新");
         setLoadMoreEnable(false);
         presenter.onStart();
     }

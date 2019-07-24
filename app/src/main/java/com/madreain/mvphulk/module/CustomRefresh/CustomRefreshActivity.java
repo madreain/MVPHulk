@@ -1,6 +1,7 @@
 package com.madreain.mvphulk.module.CustomRefresh;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,8 @@ import butterknife.BindView;
 @Route(path = ARouterUri.CustomRefreshActivity)
 public class CustomRefreshActivity extends BaseListActivity<CustomRefreshPresenter, CustomRefreshAdapter<CustomRefreshActivity>, CustomRefreshListData> implements CustomRefreshContract.View {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.recyclerView)
@@ -36,6 +39,8 @@ public class CustomRefreshActivity extends BaseListActivity<CustomRefreshPresent
 
     @Override
     public void _init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("自定义刷新加载");
         //自定义刷新头
         smartRefreshLayout.setRefreshHeader(new MyClassicsHeader(this));
         smartRefreshLayout.setHeaderHeight(60);

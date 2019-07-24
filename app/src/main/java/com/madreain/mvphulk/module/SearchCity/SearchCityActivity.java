@@ -1,8 +1,9 @@
 package com.madreain.mvphulk.module.SearchCity;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.madreain.hulk.ui.BaseActivity;
@@ -10,7 +11,6 @@ import com.madreain.mvphulk.R;
 import com.madreain.mvphulk.consts.ARouterUri;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @author madreain
@@ -20,8 +20,10 @@ import butterknife.ButterKnife;
 @Route(path = ARouterUri.SearchCityActivity)
 public class SearchCityActivity extends BaseActivity<SearchCityPresenter> implements SearchCityContract.View {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.activity_search_city)
-    RelativeLayout activitySearchCity;
+    LinearLayout activitySearchCity;
 
     @Override
     public int getLayoutId() {
@@ -31,6 +33,8 @@ public class SearchCityActivity extends BaseActivity<SearchCityPresenter> implem
 
     @Override
     public void init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("暂无数据");
         //初始化
         presenter.onStart();
     }

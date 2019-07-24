@@ -1,6 +1,7 @@
 package com.madreain.mvphulk.module.CityList;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,8 @@ import butterknife.BindView;
 @Route(path = ARouterUri.CityListActivity)
 public class CityListActivity extends BaseListActivity<CityListPresenter, CityListAdapter<CityListActivity>, CityListListData> implements CityListContract.View {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.smartRefreshLayout)
     SmartRefreshLayout smartRefreshLayout;
     @BindView(R.id.recyclerView)
@@ -36,6 +39,8 @@ public class CityListActivity extends BaseListActivity<CityListPresenter, CityLi
 
     @Override
     public void _init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("list展示能刷新能加载更多");
         presenter.onStart();
     }
 
