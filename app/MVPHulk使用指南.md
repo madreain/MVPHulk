@@ -1,4 +1,4 @@
-MVPHulk使用指南.md
+MVPHulk使用指南
 
 项目配置介绍
 方法一：直接引入源码，在app的build.gradle
