@@ -2,7 +2,7 @@
 
 MVPHulk快速集成使用指南
 
-项目配置介绍
+### 项目配置介绍
 
 ###### 方法一：直接引入源码，在app的build.gradle
 
@@ -65,7 +65,7 @@ annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 ```
 
-项目入门介绍
+### 项目入门介绍
 # 1.配置Application,继承HulkApplication
 ⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，需引入MultiDex来解决这个问题
 
