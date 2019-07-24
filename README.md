@@ -5,6 +5,7 @@ MVPHulk快速集成使用指南
 项目配置介绍
 方法一：直接引入源码，在app的build.gradle
 
+```
 api project(':hulk')
 
 //dagger2
@@ -15,31 +16,42 @@ api rootProject.ext.dependencies["butterknife"]
 annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 //arouter
 annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+```
 
 JAVA8的支持
+
+```
 compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+```
 
 方法二：
 1.项目的build.gradle
+
+```
 allprojects {
     repositories {
         google()
         jcenter()
     }
 }
+```
 
 2.app的build.gradle
 
 在android下添加
 
+```
 compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
    }
+```
 
+
+```
 api 'com.madreain:hulk:0.0.1'
 
 //dagger2
@@ -50,6 +62,7 @@ api rootProject.ext.dependencies["butterknife"]
 annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 //arouter
 annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+```
 
 项目入门介绍
 # 1.配置Application,继承HulkApplication
@@ -65,25 +78,30 @@ annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 1.)在config.gradle中配置开启日志、开启切换环境、BASEURL的相关参数
 ###### config.gradle的相关参数
 
+```
 OPEN_LOG = true
 OPEN_CHANGE = true
 BASE_URL = " http://www.mxnzp.com"
 CODE_SUCCESS = "1"
 //增删改查返回网络请求成功，因为不支持集合，这里采用,分割
 CODELIST_SUCCESS = "1,0"
+```
 
 ###### app的build.gradle中定义这三个参数,android下的defaultConfig
 
+
+```
 //定义网络请求成功返回码 baseurl  日志打印  切换环境  在代码中BuildConfig.BASE_URL去使用
 buildConfigField "String", "CODE_SUCCESS", getCodeSuccess()
 buildConfigField "String", "CODELIST_SUCCESS", getCodeListSuccess()
 buildConfigField "String", "BASE_URL", getBaseUrl()
 buildConfigField "boolean", "OPEN_LOG", getOpenLog()
 buildConfigField "boolean", "OPEN_CHANGE", getOpenChange()
+```
 
 ###### android同级上创建上面的相关三个方法
 
-
+```
 def getOpenLog() {
     return "${OPEN_LOG}"
 }
@@ -103,12 +121,14 @@ def getCodeSuccess() {
 def getCodeListSuccess() {
     return "\"" + String.valueOf(CODELIST_SUCCESS)+ "\""
 }
+```
 
 ###### 设置完成后需rebuild或者clean一下
 
 2.)网络请求的相关拦截器
 ###### 请求头拦截
 
+```
 public class RequestHeaderInterceptor implements Interceptor {
 
     //统一请求头的封装根据自身项目添加
@@ -123,9 +143,11 @@ public class RequestHeaderInterceptor implements Interceptor {
         return chain.proceed(authorised);
     }
 }
+```
 
 ###### 非正常态拦截（互踢的场景）
 
+```
 public class SessionInterceptor implements IReturnCodeErrorInterceptor {
 
     //和接口定义互踢的相关参数返回，然后在todo方法进行跳转
@@ -142,11 +164,14 @@ public class SessionInterceptor implements IReturnCodeErrorInterceptor {
     }
 
 }
+```
 
 ###### 消息拦截器
 
+```
 HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+```
 
 3.)默认占位图、默认头像占位图
 
@@ -161,8 +186,11 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 ⚠️注意：Template模版会直接写入进去，可省略这步
 
 # 8.请求接口记得先添加权限
+
+```
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
 
 # 9.MVPHulkTemplate使用，请在包名下使用创建
 
