@@ -144,6 +144,9 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 10.继承IVaryViewHelperController，实现自定义View的替换
 
-# 11.BaseListActivity\BaseListFragment对应请求接口的RSubscriberList
-     BaseActivity\BaseFragment对应请求接口的RSubscriber
+# 11.BRSubscriberList、RSubscriber对应三种接口交互方式
+     NULL（无交互）
+     TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
+     REPLACE（接口开始showLoading()---->>接口结束 :成功：restore(),失败：showError(); 失败、无数据情况会对应相应的ui展示）
+        
 
