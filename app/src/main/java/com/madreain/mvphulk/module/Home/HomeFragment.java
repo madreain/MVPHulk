@@ -2,7 +2,6 @@ package com.madreain.mvphulk.module.Home;
 
 import android.os.Bundle;
 import android.view.View;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
 

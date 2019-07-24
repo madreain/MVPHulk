@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="division_line">0.5dp</dimen>
+    <dimen name="dimenPaddingCommon">10dp</dimen>
     <dimen name="dp48">48dp</dimen>
 </resources>

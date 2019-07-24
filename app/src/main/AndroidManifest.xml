@@ -24,8 +24,6 @@
         <activity
             android:name=".module.Main.MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
