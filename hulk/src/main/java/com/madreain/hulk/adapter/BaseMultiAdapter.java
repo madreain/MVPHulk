@@ -1,5 +1,6 @@
 package com.madreain.hulk.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,26 +32,16 @@ public abstract class BaseMultiAdapter<T extends MultiItemEntity, V extends IVie
         addItemType();
     }
 
-    @Override
-    public void setLoadMoreView(LoadMoreView loadMoreView) {
-        super.setLoadMoreView(loadMoreView);
-    }
-
-    public void setNewData(List<T> data) {
-        super.setNewData(data);
-    }
-
-    @Override
-    public void addData(@NonNull T data) {
-        super.addData(data);
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-    }
-
     @Inject
     public V view;
+
+    public Context getContext() {
+        return mContext;
+    }
+
+    public void clearData() {
+        getData().clear();
+        notifyDataSetChanged();
+    }
 
 }
