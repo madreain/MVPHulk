@@ -1,7 +1,7 @@
 # MVPHulk Android MVP 快速集成方案
 
 ---
-> MVPHulk是RxJava+Okhttp+Retrofit+Dagger+MVP框架，Rxlifecycle用于生命周期的管理，
+> MVPHulk是RxJava+Rxlifecycle+Okhttp+Retrofit+Dagger+MVP框架，
 
 
 ## 使用第三方库
