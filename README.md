@@ -3,7 +3,8 @@
 MVPHulk快速集成使用指南
 
 项目配置介绍
-方法一：直接引入源码，在app的build.gradle
+
+###### 方法一：直接引入源码，在app的build.gradle
 
 ```
 api project(':hulk')
@@ -27,7 +28,7 @@ compileOptions {
     }
 ```
 
-方法二：
+###### 方法二：
 1.项目的build.gradle
 
 ```
