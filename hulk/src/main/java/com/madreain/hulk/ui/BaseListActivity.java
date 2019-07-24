@@ -97,7 +97,7 @@ public abstract class BaseListActivity<P extends BasePresenter, A extends BaseQu
                 @Override
                 public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                     loadPageNum = pageNum + 1;
-                    loadPageListData(pageNum + 1);
+                    loadPageListData(loadPageNum);
                 }
             });
         }
