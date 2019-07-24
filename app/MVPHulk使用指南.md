@@ -150,7 +150,7 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 # 4.ApiService接口创建（Demo中是放在包名下的module/api下，因为会结合Template去生成代码）
 
-# 5.RouterUri类创建，ARouter的路径存放（Demo中是放在包名下的consts下，因为会结合Template去生成代码）
+# 5.ARouterUri类创建，ARouter的路径存放（Demo中是放在包名下的consts下，因为会结合Template去生成代码）,ARouterKey用于数据传递的key
 
 # 6.利用HulkTemplate生成对应单Activity、单Fragment、ListActivity、ListFragment
 [MVPHulkTemplate](https://github.com/madreain/MVPHulkTemplate)
