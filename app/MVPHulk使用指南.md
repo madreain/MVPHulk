@@ -51,16 +51,20 @@ OPEN_LOG = true
 OPEN_CHANGE = true
 BASE_URL = " http://www.mxnzp.com"
 CODE_SUCCESS = "1"
+//增删改查返回网络请求成功，因为不支持集合，这里采用,分割
+CODELIST_SUCCESS = "1,0"
 
 ###### app的build.gradle中定义这三个参数,android下的defaultConfig
 
 //定义网络请求成功返回码 baseurl  日志打印  切换环境  在代码中BuildConfig.BASE_URL去使用
 buildConfigField "String", "CODE_SUCCESS", getCodeSuccess()
+buildConfigField "String", "CODELIST_SUCCESS", getCodeListSuccess()
 buildConfigField "String", "BASE_URL", getBaseUrl()
 buildConfigField "boolean", "OPEN_LOG", getOpenLog()
 buildConfigField "boolean", "OPEN_CHANGE", getOpenChange()
 
 ###### android同级上创建上面的相关三个方法
+
 
 def getOpenLog() {
     return "${OPEN_LOG}"
@@ -70,14 +74,16 @@ def getOpenChange() {
     return "${OPEN_CHANGE}"
 }
 
-//根据判断是否使用来自jenkins的Url还是本地的baseUrl
 def getBaseUrl() {
-    //来自jenkins的环境地质，最后没有斜杠，需要手动拼接
     return "\"" + String.valueOf(BASE_URL).trim() + "/\""
 }
 
 def getCodeSuccess() {
-    return "\"" + String.valueOf(BASE_URL).trim() + "/\""
+    return "\"" + String.valueOf(CODE_SUCCESS)+ "\""
+}
+
+def getCodeListSuccess() {
+    return "\"" + String.valueOf(CODELIST_SUCCESS)+ "\""
 }
 
 ###### 设置完成后需rebuild或者clean一下

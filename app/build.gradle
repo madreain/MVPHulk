@@ -59,9 +59,8 @@ def getOpenChange() {
     return "${OPEN_CHANGE}"
 }
 
-//根据判断是否使用来自jenkins的Url还是本地的baseUrl
 def getBaseUrl() {
-    //来自jenkins的环境地质，最后没有斜杠，需要手动拼接
+    //最后没有斜杠，需要手动拼接
     return "\"" + String.valueOf(BASE_URL).trim() + "/\""
 }
 
