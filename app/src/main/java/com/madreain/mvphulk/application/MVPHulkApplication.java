@@ -22,6 +22,10 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -47,14 +51,16 @@ public class MVPHulkApplication extends HulkApplication {
     @Override
     public void initHulkConfig() {
         //DaggerAppComponent的生成make project一下就行
-        appcomponent=DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
+        appcomponent = DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
         //消息拦截器
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         //配置项
         HulkConfig.builder()
                 .setApplication(this)
-                .setRetSuccess(String.valueOf(BuildConfig.CODE_SUCCESS))
+                //这里只需要选择设置一个
+                .setRetSuccess(BuildConfig.CODE_SUCCESS)
+//                .setRetSuccessList(BuildConfig.CODELIST_SUCCESS)
                 .setBaseUrl(BuildConfig.BASE_URL)
                 .setChangeBaseUrl(BuildConfig.OPEN_CHANGE)
                 .setOpenLog(BuildConfig.OPEN_LOG)

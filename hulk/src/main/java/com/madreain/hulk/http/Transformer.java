@@ -10,7 +10,9 @@ import com.madreain.hulk.http.exception.ReturnCodeException;
 import com.madreain.hulk.http.interceptor.IVersionDiffInterceptor;
 import com.madreain.hulk.mvp.IRes;
 import com.madreain.hulk.mvp.IView;
+import com.madreain.hulk.utils.ListUtil;
 import com.madreain.hulk.utils.LogUtils;
+import com.madreain.hulk.utils.StringUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
@@ -80,7 +82,16 @@ public class Transformer {
                 } else {//有网络
                     //版本号不一致
 //                    isVersionDiff(iView, baseRes.getVersion());
-                    if (HulkConfig.getRetSuccess().equals(baseRes.getCode())) {
+                    //设置统一返回成功状态的判断
+                    if (!StringUtils.isEmpty(HulkConfig.getRetSuccess()) && HulkConfig.getRetSuccess().equals(baseRes.getCode())) {
+                        T t = baseRes.getResult();
+                        if (t == null || (t instanceof List && ((List) t).size() == 0)) {
+                            return Flowable.error(new ResultException("response's model is null"));
+                        } else {
+                            return Flowable.just(baseRes.getResult());
+                        }
+                        //设置增删改查分别的成功状态的判断
+                    } else if (!ListUtil.isEmpty(HulkConfig.getRetSuccessList()) && HulkConfig.getRetSuccessList().contains(baseRes.getCode())) {
                         T t = baseRes.getResult();
                         if (t == null || (t instanceof List && ((List) t).size() == 0)) {
                             return Flowable.error(new ResultException("response's model is null"));
@@ -107,7 +118,9 @@ public class Transformer {
                     } else {//有网络
                         //版本号不一致
 //                        isVersionDiff(iView, baseRes.getVersion());
-                        if (HulkConfig.getRetSuccess().equals(baseRes.getCode())) {//数据请求正常
+                        if (!StringUtils.isEmpty(HulkConfig.getRetSuccess()) && HulkConfig.getRetSuccess().equals(baseRes.getCode())) {//数据请求正常
+                            return Flowable.just(baseRes);
+                        } else if (!ListUtil.isEmpty(HulkConfig.getRetSuccessList()) && HulkConfig.getRetSuccessList().contains(baseRes.getCode())) {//数据请求正常
                             return Flowable.just(baseRes);
                         } else {
                             //如果网络未连接不会调用flatMap,所以网络未连接不会出现ServerException错误
@@ -120,7 +133,7 @@ public class Transformer {
     /**
      * 版本不一致处理
      *
-     * @param iView       IView
+     * @param iView          IView
      * @param serviceVersion serviceVersion
      */
     private static void isVersionDiff(IView iView, String serviceVersion) {

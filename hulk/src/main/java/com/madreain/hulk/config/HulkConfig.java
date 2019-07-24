@@ -7,6 +7,7 @@ import com.madreain.hulk.http.interceptor.IReturnCodeErrorInterceptor;
 import com.madreain.hulk.http.interceptor.IVersionDiffInterceptor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Interceptor;
@@ -21,8 +22,11 @@ import retrofit2.Retrofit;
 public class HulkConfig {
     private static Application application;
     private static String baseUrl;//服务地址
-    //这里可根据自身项目将增删改查不同返回正常态的值进行区分，这里具体看公司项目决定
+    //这里可根据自身项目设置是统一返回状态的还是增删改查不同返回状态的值
+    //设置统一正常态返回值
     private static String retSuccess;//returnCode 正常态的值
+    //设置增删改查不一样的正常态返回值
+    private static List<String> retSuccessList;
     private static boolean logOpen;//日志开关
     private static boolean changeBaseUrl;//切换环境
     private static Retrofit retrofit;
@@ -54,6 +58,17 @@ public class HulkConfig {
             HulkConfig.baseUrl = baseUrl;
             return this;
         }
+
+        public Builder setRetSuccessList(List<String> retSuccessList) {
+            HulkConfig.retSuccessList = retSuccessList;
+            return this;
+        }
+
+        public Builder setRetSuccessList(String retSuccessList) {
+            HulkConfig.retSuccessList = Arrays.asList(retSuccessList.split(","));
+            return this;
+        }
+
 
         public Builder setRetSuccess(String retSuccess) {
             HulkConfig.retSuccess = retSuccess;
@@ -153,6 +168,10 @@ public class HulkConfig {
 
     public static String getRetSuccess() {
         return retSuccess;
+    }
+
+    public static List<String> getRetSuccessList() {
+        return retSuccessList;
     }
 
     public static boolean isLogOpen() {

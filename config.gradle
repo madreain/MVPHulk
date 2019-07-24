@@ -129,8 +129,9 @@ ext {
 //    OPEN_CHANGE = false
     //baseurl
     BASE_URL = "https://www.mxnzp.com"
-    //网络请求成功
+    //统一返回网络请求成功
     CODE_SUCCESS = "1"
-
+    //增删改查返回网络请求成功，因为不支持集合，这里采用,分割
+    CODELIST_SUCCESS = "1,0"
 
 }

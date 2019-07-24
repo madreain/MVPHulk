@@ -20,7 +20,8 @@ android {
         }
 
         //定义网络请求成功返回码 baseurl  日志打印  切换环境  在代码中BuildConfig.BASE_URL去使用
-        buildConfigField "int", "CODE_SUCCESS", getCodeSuccess()
+        buildConfigField "String", "CODE_SUCCESS", getCodeSuccess()
+        buildConfigField "String", "CODELIST_SUCCESS", getCodeListSuccess()
         buildConfigField "String", "BASE_URL", getBaseUrl()
         buildConfigField "boolean", "OPEN_LOG", getOpenLog()
         buildConfigField "boolean", "OPEN_CHANGE", getOpenChange()
@@ -65,7 +66,11 @@ def getBaseUrl() {
 }
 
 def getCodeSuccess() {
-    return ""+"${CODE_SUCCESS}"
+    return "\"" + String.valueOf(CODE_SUCCESS)+ "\""
+}
+
+def getCodeListSuccess() {
+    return "\"" + String.valueOf(CODELIST_SUCCESS)+ "\""
 }
 
 dependencies {
