@@ -1,7 +1,8 @@
 # MVPHulk Android MVP 快速集成方案
 
 ---
-> MVPHulk是RxJava+Rxlifecycle+Okhttp+Retrofit+Dagger+MVP框架，
+> MVPHulk是RxJava+Rxlifecycle+Okhttp+Retrofit+Dagger2+MVP框架，结合BaseRecyclerViewAdapterHelper和SmartRefreshLayout封装可刷新加载的Base类并结合接口回掉做了三种接口交互方式，
+Butterknife用于View注入，EventBus用于通信，ARouter用于组件化路由跳转。
 
 
 ## 使用第三方库
