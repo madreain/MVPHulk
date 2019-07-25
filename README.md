@@ -733,7 +733,7 @@ public class CityListActivity extends BaseListActivity<CityListPresenter, CityLi
 
 接口调用到数据显示的代码参考[CityList城市](https://github.com/madreain/MVPHulk/tree/master/app/src/main/java/com/madreain/mvphulk/module/CityList)
 
-
+到此为止，程序可以跑起来，想展示的界面也能展示出来了，接下来介绍一下可修改的自定义相关项
 
 ### 10.继承IVaryViewHelperController，实现自定义View的替换
 
