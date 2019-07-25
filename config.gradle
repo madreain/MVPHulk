@@ -1,6 +1,6 @@
 ext {
     //查看依赖树   ./gradlew -q app:dependencies
-    //查看错误信息 ./gradlew compileDebug --stacktrace -info      ./gradlew compileDebugSource --stacktrace -info
+    //查看错误信息  ./gradlew compileDebugSource --stacktrace -info
     //这里选择的是不支持AndroidX的版本，得注意相关第三方库也不能使用AndroidX相关的引用
     //应用配置
     android = [
