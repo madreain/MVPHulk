@@ -517,15 +517,209 @@ public abstract class BuilderModule {
 }
 ```
 
-### 8.请求接口记得先添加权限
+### 8.ARouter进行路由跳转、及其参数传递
 
+参考官方文档[ARouter使用指南](https://github.com/alibaba/ARouter/blob/master/README_CN.md)
+
+
+### 9.请求接口
+
+1.)添加请求接口相关权限
 ```
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
+2.)补充对象的相关参数
+
+参考如下，这里需注意@Keep的作用，就是保持哪些类或者哪些元素不被混淆
+```
+@Keep
+public class CityListListData {
+
+    private String code;
+    private String name;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+```
+
+
+3.)ApiService配置相关接口
+
+参考如下
+```
+public interface ApiService {
+
+    @GET("api/address/list")
+    Flowable<BaseRes<List<CityListListData>>> getCityList();
+    
+}
+```
+
+4.)继承自BaseModel的对应Model增加接口调用的方法
+
+参考如下
+```
+public class CityListModel extends BaseModel<ApiService> implements CityListContract.Model {
+
+    @Inject
+    public CityListModel() {
+        super();
+    }
+
+    @Override
+    public Flowable<BaseRes<List<CityListListData>>> loadListDatas(int pageNo) {
+        return apiService.getCityList();//接口调用 apiService.xxx
+    }
+}
+```
+
+5.)继承自BasePresenter的对应Presenter放开相对应的方法
+
+参考如下
+```
+public class CityListPresenter extends BasePresenter<CityListModel, CityListContract.View> {
+
+    @Inject
+    CityListPresenter() {
+
+    }
+
+    @Override
+    public void onStart() {
+        loadPageListData(1);
+    }
+
+    @Override
+    public void onDestroy() {
+        model.onDestroy();
+    }
+
+    public void loadPageListData(final int pageNum) {
+        model.loadListDatas(pageNum)
+                .compose(Transformer.retrofit(view))
+                .subscribeWith(new RSubscriberList<List<CityListListData>>(view, pageNum) {
+                    @Override
+                    public void _onNext(List<CityListListData> datas) {
+                        view.showListData(datas, pageNum);
+                    }
+
+                    @Override
+                    public void retry() {
+                        loadPageListData(pageNum);
+                    }
+
+                });
+    }
+}
+```
+
+6.)继承自BaseAdapter的Adapter设置相关数据展示
+
+参考如下
+```
+
+public class CityListAdapter<V extends IView> extends BaseAdapter<CityListListData, CityListActivity> {
+
+    @Inject
+    public CityListAdapter() {
+        super(R.layout.item_activity_city_list, new ArrayList<>());
+    }
+
+    @Override
+    protected void convert(HulkViewHolder helper, CityListListData data) {
+        helper.setText(R.id.tv, data.getName());
+    }
+}
+
+
+```
+
+
+7.)继承自BaseListActivity的Activity类的设置
+
+设置是否可刷新加载，默认都可以
+```
+    setLoadMoreEnable(true);
+    setRefreshEnable(true);
+```
+
+Activity类完整代码参考如下
+```
+@Route(path = ARouterUri.CityListActivity)
+public class CityListActivity extends BaseListActivity<CityListPresenter, CityListAdapter<CityListActivity>, CityListListData> implements CityListContract.View {
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.smartRefreshLayout)
+    SmartRefreshLayout smartRefreshLayout;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_city_list;
+    }
+
+
+    @Override
+    public void _init(Bundle savedInstanceState) {
+        setSupportActionBarWithBack(toolbar);
+        toolbar.setTitle("list展示能刷新能加载更多");
+        presenter.onStart();
+    }
+
+    @Override
+    public void loadPageListData(int pageNo) {
+        presenter.loadPageListData(pageNo);
+    }
+
+    @Override
+    public SmartRefreshLayout getSmartRefreshLayout() {
+        return smartRefreshLayout;
+    }
+
+
+    @Override
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return new LinearLayoutManager(this);
+    }
+
+    @Override
+    public View getReplaceView() {
+        return smartRefreshLayout;
+    }
+
+}
+
+```
+
+接口调用到数据显示的代码参考[CityList城市](https://github.com/madreain/MVPHulk/tree/master/app/src/main/java/com/madreain/mvphulk/module/CityList)
+
 ### 9.继承IVaryViewHelperController，实现自定义View的替换
 
+参考[MyVaryViewHelperController](https://github.com/madreain/MVPHulk/blob/master/app/src/main/java/com/madreain/mvphulk/view/MyVaryViewHelperController.java)
 ```
 public class MyVaryViewHelperController implements IVaryViewHelperController {
 
