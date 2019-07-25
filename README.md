@@ -131,6 +131,17 @@ private static Drawable glideHeaderPlaceHolder;//默认头像占位图
 ```
 
 
+⚠️注意：Glide相关注意事项
+
+Glide的引用，需创建ids.xml
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="glide_tag" type="id" />
+</resources>
+```
+
 配置参考如下，配置这些前得先参考-[dagger2和mvp结合](#2.dagger2和mvp结合)-[配置相关的HulkConfig](#3.配置相关的HulkConfig)创建相关类、接口
 
 ⚠️注意：可跳过接下来的配置参考直接从-[dagger2和mvp结合](#2.dagger2和mvp结合)开始看
@@ -224,16 +235,6 @@ public class MVPHulkApplication extends HulkApplication {
 }
 
 
-```
-
-⚠️注意：Glide得创建ids.xml
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="glide_tag" type="id" />
-
-</resources>
 ```
 
 ### 2.dagger2和mvp结合
