@@ -90,10 +90,39 @@ annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 ### 1.配置Application,继承HulkApplication
 ⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，需引入MultiDex来解决这个问题
 
+HulkConfig配置项配置相关设置如下
+
+```
+
+private static Application application;//设置Application
+private static String baseUrl;//服务地址
+//这里可根据自身项目设置是统一返回状态的还是增删改查不同返回状态的值
+//设置统一正常态返回值
+private static String retSuccess;//returnCode 正常态的值
+//设置增删改查不一样的正常态返回值
+private static List<String> retSuccessList;
+private static boolean logOpen;//日志开关
+private static boolean changeBaseUrl;//切换环境
+private static Retrofit retrofit;//Retrofit设置
+private static List<Interceptor> okHttpInterceptors = new ArrayList<>();//oKHttp拦截器
+private static List<IReturnCodeErrorInterceptor> retCodeInterceptors = new ArrayList<>();//接口返回值拦截器
+private static List<IVersionDiffInterceptor> versionDiffInterceptors = new ArrayList<>();//服务端版本号和本地版本号不一致拦截器
+private static long connectTimeout = 15;//连接超时时间：单位秒
+private static long readTimeout = 30;//单位秒
+private static long writeTimeout = 60;//单位秒
+private static Drawable glidePlaceHolder;//默认图
+private static Drawable glideHeaderPlaceHolder;//默认头像占位图
+
+    
+```
+
 ### 2.dagger2和mvp结合（app的build.gradle需引入相关dagger2库）
+
 1.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
 2.)Appcomponent的创建(Application)
 3.)以及注入初始化代码。 app级别的当然在application里面出初始化
+
+
 
 ### 3.配置相关的HulkConfig
 
@@ -199,13 +228,44 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 ### 4.ApiService接口创建（Demo中是放在包名下的module/api下，因为会结合Template去生成代码）
 
+```
+public interface ApiService {
+
+    @GET("api/address/list")
+    Flowable<BaseRes<List<CityListListData>>> getCityList();
+
+}
+```
+
 ### 5.ARouterUri类创建，ARouter的路径存放（Demo中是放在包名下的consts下，因为会结合Template去生成代码）,ARouterKey用于数据传递的key
 
+```
+public class ARouterUri {
+
+    public static final String MainActivity = "/mvphulk/ui/MainActivity";
+
+}
+
+```
+
 ### 6.利用HulkTemplate生成对应单Activity、单Fragment、ListActivity、ListFragment
-[MVPHulkTemplate](https://github.com/madreain/MVPHulkTemplate)
+[MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate)
 
 ### 7.第6步生成的记得在BuilderModule进行注册
 ⚠️注意：Template模版会直接写入进去，可省略这步
+
+```
+@Module
+public abstract class BuilderModule {
+
+    @ContributesAndroidInjector(modules = MainModule.class)
+    abstract MainActivity mainActivity();
+
+    @ContributesAndroidInjector(modules = HomeModule.class)
+    abstract HomeFragment homeFragment();
+
+}
+```
 
 ### 8.请求接口记得先添加权限
 
@@ -214,11 +274,140 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
-### 9.MVPHulkTemplate使用，请在包名下使用创建
+### 9.继承IVaryViewHelperController，实现自定义View的替换
 
-### 10.继承IVaryViewHelperController，实现自定义View的替换
+```
+public class MyVaryViewHelperController implements IVaryViewHelperController {
 
-### 11.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
+    private VaryViewHelper helper;
+
+    //是否已经调用过restore方法
+    private boolean hasRestore;
+
+    public boolean isHasRestore() {
+        return hasRestore;
+    }
+
+    public MyVaryViewHelperController(View view) {
+        this(new VaryViewHelper(view));
+    }
+
+    private MyVaryViewHelperController(VaryViewHelper helper) {
+        super();
+        this.helper = helper;
+    }
+
+    @Override
+    public void showNetworkError(View.OnClickListener onClickListener) {
+        showNetworkError("网络状态异常，请刷新重试", onClickListener);
+    }
+
+    @Override
+    public void showNetworkError(String msg, View.OnClickListener onClickListener) {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_error);
+        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        TextView tv_title = layout.findViewById(R.id.tv_title);
+        tv_title.setVisibility(View.GONE);
+        TextView tv_msg = layout.findViewById(R.id.tv_msg);
+        tv_msg.setText(msg);
+        if (null != onClickListener) {
+            againBtn.setOnClickListener(onClickListener);
+        }
+        helper.showView(layout);
+    }
+
+    @Override
+    public void showCustomView(int drawableInt, String title, String msg, String btnText, View.OnClickListener listener) {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_error);
+        ImageView iv_flag = layout.findViewById(R.id.iv_flag);
+        TextView tv_title = layout.findViewById(R.id.tv_title);
+        TextView tv_msg = layout.findViewById(R.id.tv_msg);
+        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+
+        iv_flag.setImageResource(drawableInt);
+        if (TextUtils.isEmpty(title)) {
+            tv_title.setVisibility(View.GONE);
+        } else {
+            tv_title.setVisibility(View.VISIBLE);
+            tv_title.setText(title);
+        }
+
+        if (TextUtils.isEmpty(msg)) {
+            tv_msg.setVisibility(View.GONE);
+        } else {
+            tv_msg.setVisibility(View.VISIBLE);
+            tv_msg.setText(msg);
+        }
+
+        if (TextUtils.isEmpty(btnText)) {
+            againBtn.setVisibility(View.GONE);
+        } else {
+            againBtn.setText(btnText);
+            if (null != listener) {
+                againBtn.setOnClickListener(listener);
+            }
+        }
+        helper.showView(layout);
+    }
+
+    @Override
+    public void showEmpty(String emptyMsg) {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_no_data);
+        TextView textView = layout.findViewById(R.id.tv_no_data);
+        if (!TextUtils.isEmpty(emptyMsg)) {
+            textView.setText(emptyMsg);
+        }
+        helper.showView(layout);
+    }
+
+    @Override
+    public void showEmpty(String emptyMsg, View.OnClickListener onClickListener) {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_no_data_click);
+        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        TextView textView = layout.findViewById(R.id.tv_no_data);
+        if (!TextUtils.isEmpty(emptyMsg)) {
+            textView.setText(emptyMsg);
+        }
+        if (null != onClickListener) {
+            againBtn.setOnClickListener(onClickListener);
+//            againBtn.setVisibility(View.VISIBLE);
+            againBtn.setVisibility(View.GONE);//按钮都隐藏，空页面没有刷新 2018.9.5
+        } else {
+            againBtn.setVisibility(View.GONE);
+        }
+        helper.showView(layout);
+    }
+
+    @Override
+    public void showLoading() {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_loading);
+        helper.showView(layout);
+    }
+
+    @Override
+    public void showLoading(String msg) {
+        hasRestore = false;
+        View layout = helper.inflate(R.layout.view_page_loading);
+        TextView tv_msg = layout.findViewById(R.id.tv_msg);
+        tv_msg.setText(msg);
+        helper.showView(layout);
+    }
+
+    public void restore() {
+        hasRestore = true;
+        helper.restoreView();
+    }
+
+}
+
+```
+
+### 10.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
      NULL（无交互）
      TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
      REPLACE（接口开始showLoading()---->>接口结束 :成功：restore(),失败：showError(); 失败、无数据情况会对应相应的ui展示）
