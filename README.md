@@ -88,7 +88,9 @@ annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 
 ## 项目入门介绍
 ### 1.配置Application,继承HulkApplication
-⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，需引入MultiDex来解决这个问题
+⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，
+需引入MultiDex来解决这个问题，创建好Application,记得在AndroidManifest.xml中修改application的name
+
 
 HulkConfig配置项配置相关设置如下
 
@@ -116,12 +118,171 @@ private static Drawable glideHeaderPlaceHolder;//默认头像占位图
     
 ```
 
-### 2.dagger2和mvp结合（app的build.gradle需引入相关dagger2库）
+
+配置参考如下，配置这些前得先参考-[dagger2和mvp结合](#2.dagger2和mvp结合)-[配置相关的HulkConfig](#3.配置相关的HulkConfig)创建相关类、接口
+⚠️注意：可跳过直接从-[dagger2和mvp结合](#2.dagger2和mvp结合)开始看
+
+
+```
+
+public class MVPHulkApplication extends HulkApplication {
+
+    private static Appcomponent appcomponent;
+
+    public static Appcomponent getAppcomponent() {
+        return appcomponent;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        MultiDex.install(this);
+    }
+
+    @Override
+    public void initHulkConfig() {
+        //DaggerAppComponent的生成make project一下就行
+        appcomponent = DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
+        //消息拦截器
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        //配置项
+        HulkConfig.builder()
+                .setApplication(this)
+                //这里只需要选择设置一个
+                .setRetSuccess(BuildConfig.CODE_SUCCESS)
+//                .setRetSuccessList(BuildConfig.CODELIST_SUCCESS)
+                .setBaseUrl(BuildConfig.BASE_URL)
+                .setChangeBaseUrl(BuildConfig.OPEN_CHANGE)
+                .setOpenLog(BuildConfig.OPEN_LOG)
+                .addOkHttpInterceptor(new RequestHeaderInterceptor())//请求头拦截器
+                .addOkHttpInterceptor(BuildConfig.OPEN_LOG, logging)//okhttp请求日志开关+消息拦截器.md
+                .addRetCodeInterceptor(new SessionInterceptor())// returnCode非正常态拦截器
+                .setGlidePlaceHolder(new ColorDrawable(Color.parseColor("#ffffff")))//默认占位图--颜色
+                .setGlideHeaderPlaceHolder(getResources().getDrawable(R.mipmap.ic_launcher))//默认头像占位图
+                .setRetrofit(appcomponent.getRetrofit())
+                .build();
+        appcomponent.inject(this);
+        //application 上下文
+        Utils.init(this);
+        //Glide设置tag
+        ViewTarget.setTagId(R.id.glide_tag);
+        //log日子开关
+        initLog();
+        //ARouter
+        initArouter();
+    }
+
+    private void initArouter() {
+        //ARouter的初始化
+        ARouter.init(this);
+    }
+
+    private void initLog() {
+        //测试环境
+        if (BuildConfig.OPEN_LOG) {
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+    }
+
+    //static 代码段可以防止内存泄露
+    static {
+        //启用矢量图兼容
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
+                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+            }
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                //指定为经典Footer，默认是 BallPulseFooter
+                return new ClassicsFooter(context).setDrawableSize(20);
+            }
+        });
+    }
+
+}
+
+
+```
+
+⚠️注意：Glide得创建ids.xml
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="glide_tag" type="id" />
+
+</resources>
+```
+
+### 2.dagger2和mvp结合
+
+app的build.gradle需引入相关dagger2库,步骤1中已配置
 
 1.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
+
+```
+
+@Module
+public abstract class BuilderModule {
+    //所有的activity、fragment都要在这里进行注册
+    
+}
+
+```
+
 2.)Appcomponent的创建(Application)
+
+```
+
+@Singleton
+@Component(modules = {AndroidSupportInjectionModule.class, ApiModule.class, BuilderModule.class})
+public interface Appcomponent extends IAppComponent {
+
+    //HulkUnionApplication是继承HulkApplication创建
+    void inject(HulkUnionApplication mvpHulkApplication);
+
+    Retrofit getRetrofit();
+
+}
+
+```
+
+⚠️注意：DaggerAppComponent的生成make project一下就行
+
 3.)以及注入初始化代码。 app级别的当然在application里面出初始化
 
+```
+public class HulkUnionApplication extends HulkApplication {
+
+    private static Appcomponent appcomponent;
+
+    public static Appcomponent getAppcomponent() {
+        return appcomponent;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        MultiDex.install(this);
+    }
+
+    @Override
+    public void initHulkConfig() {
+        //DaggerAppComponent的生成make project一下就行
+        appcomponent = DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
+    }
+}
+    
+```
 
 
 ### 3.配置相关的HulkConfig
@@ -226,6 +387,93 @@ logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
 3.)默认占位图、默认头像占位图
 
+到此为止，继承HulkApplication的配置项就完成了，这里还设置了Glide、ARouter、SmartRefreshLayout，完整代码参考如下
+```
+public class HulkUnionApplication extends HulkApplication {
+
+    private static Appcomponent appcomponent;
+
+    public static Appcomponent getAppcomponent() {
+        return appcomponent;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        MultiDex.install(this);
+    }
+
+    @Override
+    public void initHulkConfig() {
+        //DaggerAppComponent的生成make project一下就行
+        appcomponent = DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();
+        //消息拦截器
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        //配置项
+        HulkConfig.builder()
+                .setApplication(this)
+                //这里只需要选择设置一个
+                .setRetSuccess(BuildConfig.CODE_SUCCESS)
+//                .setRetSuccessList(BuildConfig.CODELIST_SUCCESS)
+                .setBaseUrl(BuildConfig.BASE_URL)
+                .setChangeBaseUrl(BuildConfig.OPEN_CHANGE)
+                .setOpenLog(BuildConfig.OPEN_LOG)
+                .addOkHttpInterceptor(new RequestHeaderInterceptor())//请求头拦截器
+                .addOkHttpInterceptor(BuildConfig.OPEN_LOG, logging)//okhttp请求日志开关+消息拦截器.md
+                .addRetCodeInterceptor(new SessionInterceptor())// returnCode非正常态拦截器
+                .setGlidePlaceHolder(new ColorDrawable(Color.parseColor("#ffffff")))//默认占位图--颜色
+                .setGlideHeaderPlaceHolder(getResources().getDrawable(R.mipmap.ic_launcher))//默认头像占位图
+                .setRetrofit(appcomponent.getRetrofit())
+                .build();
+        appcomponent.inject(this);
+        //application 上下文
+        Utils.init(this);
+        //Glide设置tag
+        ViewTarget.setTagId(R.id.glide_tag);
+        //log日子开关
+        initLog();
+        //ARouter
+        initArouter();
+    }
+
+    private void initArouter() {
+        //ARouter的初始化
+        ARouter.init(this);
+    }
+
+    private void initLog() {
+        //测试环境
+        if (BuildConfig.OPEN_LOG) {
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+    }
+
+    //static 代码段可以防止内存泄露
+    static {
+        //启用矢量图兼容
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
+                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+            }
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                //指定为经典Footer，默认是 BallPulseFooter
+                return new ClassicsFooter(context).setDrawableSize(20);
+            }
+        });
+    }
+}
+```
+
 ### 4.ApiService接口创建（Demo中是放在包名下的module/api下，因为会结合Template去生成代码）
 
 ```
@@ -247,6 +495,8 @@ public class ARouterUri {
 }
 
 ```
+
+接下来，我们要真正的进入业务开发阶段了
 
 ### 6.利用HulkTemplate生成对应单Activity、单Fragment、ListActivity、ListFragment
 [MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate)
