@@ -91,6 +91,18 @@ annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
 ⚠️注意：因为涉及到的第三方库比较多，dex的方法数量被限制在65535之内，这就是著名的64K(64*1024)事件，
 需引入MultiDex来解决这个问题，创建好Application,记得在AndroidManifest.xml中修改application的name
 
+记得修改application的style
+```
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="colorControlNormal">@color/windowBackground</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+```
 
 HulkConfig配置项配置相关设置如下
 
@@ -521,6 +533,10 @@ public abstract class BuilderModule {
 
 参考官方文档[ARouter使用指南](https://github.com/alibaba/ARouter/blob/master/README_CN.md)
 
+Activity需设置路由
+```
+@Route(path = ARouterUri.CityListActivity)
+```
 
 ### 9.请求接口
 
@@ -717,7 +733,9 @@ public class CityListActivity extends BaseListActivity<CityListPresenter, CityLi
 
 接口调用到数据显示的代码参考[CityList城市](https://github.com/madreain/MVPHulk/tree/master/app/src/main/java/com/madreain/mvphulk/module/CityList)
 
-### 9.继承IVaryViewHelperController，实现自定义View的替换
+
+
+### 10.继承IVaryViewHelperController，实现自定义View的替换
 
 参考[MyVaryViewHelperController](https://github.com/madreain/MVPHulk/blob/master/app/src/main/java/com/madreain/mvphulk/view/MyVaryViewHelperController.java)
 ```
@@ -851,7 +869,7 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
 
 ```
 
-### 10.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
+### 11.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
      NULL（无交互）
      TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
      REPLACE（接口开始showLoading()---->>接口结束 :成功：restore(),失败：showError(); 失败、无数据情况会对应相应的ui展示）
