@@ -158,8 +158,8 @@ public class MVPHulkApplication extends HulkApplication {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
         MultiDex.install(this);
     }
 
@@ -412,8 +412,8 @@ public class HulkUnionApplication extends HulkApplication {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
         MultiDex.install(this);
     }
 
