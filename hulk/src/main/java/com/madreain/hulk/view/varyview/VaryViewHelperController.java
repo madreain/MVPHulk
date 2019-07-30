@@ -2,10 +2,10 @@ package com.madreain.hulk.view.varyview;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.madreain.hulk.R;
-import com.madreain.hulk.view.HulkStatusButton;
 
 /**
  * @author madreain
@@ -60,7 +60,7 @@ public class VaryViewHelperController implements IVaryViewHelperController{
     public void showEmpty(String emptyMsg, View.OnClickListener listener) {
         hasRestore = false;
         View layout = helper.inflate(R.layout.hulk_page_no_data_click);
-        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        Button againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
         TextView textView = layout.findViewById(R.id.tv_no_data);
         if (!TextUtils.isEmpty(emptyMsg)) {
             textView.setText(emptyMsg);
@@ -84,7 +84,7 @@ public class VaryViewHelperController implements IVaryViewHelperController{
     public void showNetworkError(String msg, View.OnClickListener listener) {
         hasRestore = false;
         View layout = helper.inflate(R.layout.hulk_page_error);
-        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        Button againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
         TextView tv_title = layout.findViewById(R.id.tv_title);
         tv_title.setVisibility(View.GONE);
         TextView tv_msg = layout.findViewById(R.id.tv_msg);

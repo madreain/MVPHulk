@@ -2,10 +2,10 @@ package com.madreain.mvphulk.view;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.madreain.hulk.view.HulkStatusButton;
 import com.madreain.hulk.view.varyview.IVaryViewHelperController;
 import com.madreain.hulk.view.varyview.VaryViewHelper;
 import com.madreain.mvphulk.R;
@@ -46,7 +46,7 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
     public void showNetworkError(String msg, View.OnClickListener onClickListener) {
         hasRestore = false;
         View layout = helper.inflate(R.layout.view_page_error);
-        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        Button againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
         TextView tv_title = layout.findViewById(R.id.tv_title);
         tv_title.setVisibility(View.GONE);
         TextView tv_msg = layout.findViewById(R.id.tv_msg);
@@ -64,7 +64,7 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
         ImageView iv_flag = layout.findViewById(R.id.iv_flag);
         TextView tv_title = layout.findViewById(R.id.tv_title);
         TextView tv_msg = layout.findViewById(R.id.tv_msg);
-        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        Button againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
 
         iv_flag.setImageResource(drawableInt);
         if (TextUtils.isEmpty(title)) {
@@ -107,7 +107,7 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
     public void showEmpty(String emptyMsg, View.OnClickListener onClickListener) {
         hasRestore = false;
         View layout = helper.inflate(R.layout.view_page_no_data_click);
-        HulkStatusButton againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
+        Button againBtn = layout.findViewById(R.id.pager_error_loadingAgain);
         TextView textView = layout.findViewById(R.id.tv_no_data);
         if (!TextUtils.isEmpty(emptyMsg)) {
             textView.setText(emptyMsg);

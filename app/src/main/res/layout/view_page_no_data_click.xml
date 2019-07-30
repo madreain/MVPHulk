@@ -24,14 +24,16 @@
         android:textSize="@dimen/sp16" />
 
 
-    <com.madreain.hulk.view.HulkStatusButton
+    <Button
         android:id="@+id/pager_error_loadingAgain"
         android:layout_width="@dimen/dp136"
         android:layout_height="@dimen/dp36"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp40"
         android:layout_marginBottom="@dimen/dp20"
-        android:text="@string/refresh"
-        app:sbColorStyle="grayGreenLight" />
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp14"
+        android:background="@drawable/shape_status"
+        android:text="@string/refresh" />
 
 </LinearLayout>

@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="HulkStatusButton">
-        <attr name="sbColorStyle">
-            <enum name="orange" value="0" />
-            <enum name="grayGreen" value="1" />
-            <enum name="red" value="2" />
-            <enum name="grayGreenLight" value="3" />
-        </attr>
-        <attr name="sbRadius" format="dimension|reference" />
-        <attr name="android:text" />
-        <attr name="sbTextSize" format="dimension|reference" />
-        <attr name="android:enabled" />
-    </declare-styleable>
+
 </resources>
