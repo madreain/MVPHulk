@@ -43,10 +43,15 @@ public class MVPHulkApplication extends HulkApplication {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
         MultiDex.install(this);
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+   }
 
     @Override
     public void initHulkConfig() {
