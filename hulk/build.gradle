@@ -51,12 +51,12 @@ dependencies {
     api rootProject.ext.dependencies["recyclerview-v7"]
     api rootProject.ext.dependencies["annotations"]
     //rx
-    api rootProject.ext.dependencies["rxjava2"]
-    api rootProject.ext.dependencies["rxandroid2"]
-    api rootProject.ext.dependencies["rxlifecycle2"]
-    api rootProject.ext.dependencies["rxlifecycle2-android"]
-    api rootProject.ext.dependencies["rxlifecycle2-components"]
-    api rootProject.ext.dependencies["rxpermissions2"]
+    api rootProject.ext.dependencies["rxjava"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxlifecycle"]
+    api rootProject.ext.dependencies["rxlifecycle-android"]
+    api rootProject.ext.dependencies["rxlifecycle-components"]
+    api rootProject.ext.dependencies["rxpermissions"]
     //network
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["okhttp3-log"]
