@@ -516,7 +516,6 @@ public class ARouterUri {
 [MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate)
 
 ### 7.第6步生成的记得在BuilderModule进行注册
-⚠️注意：Template模版会直接写入进去，可省略这步
 
 ```
 @Module
