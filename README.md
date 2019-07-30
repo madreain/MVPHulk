@@ -512,7 +512,7 @@ public class ARouterUri {
 
 接下来，我们要真正的进入业务开发阶段了
 
-### 6.利用HulkTemplate生成对应单Activity、单Fragment、ListActivity、ListFragment
+### 6.利用HulkTemplate生成对应单Activity、单Fragment、单DialogFragment、ListActivity、ListFragment
 [MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate)
 
 ### 7.第6步生成的记得在BuilderModule进行注册
