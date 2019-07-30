@@ -58,15 +58,15 @@ dependencies {
     api rootProject.ext.dependencies["rxlifecycle-components"]
     api rootProject.ext.dependencies["rxpermissions"]
     //network
-    api rootProject.ext.dependencies["okhttp3"]
-    api rootProject.ext.dependencies["okhttp3-log"]
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttp-log"]
     api rootProject.ext.dependencies["retrofit"]
     implementation rootProject.ext.dependencies["retrofit-converter-gson"]
-    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava2"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     //glide
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-compiler"]
-    api rootProject.ext.dependencies["glide-loader-okhttp3"]
+    api rootProject.ext.dependencies["glide-loader-okhttp"]
     api rootProject.ext.dependencies["glide-annotations"]
     //gson
     api rootProject.ext.dependencies["gson"]
