@@ -55,6 +55,7 @@ public abstract class BaseListFragment<P extends BasePresenter, A extends BaseQu
      */
     public void setLoadMoreEnable(boolean loadMoreEnable) {
         this.loadMoreEnable = loadMoreEnable;
+        getSmartRefreshLayout().setEnableLoadMore(loadMoreEnable);
     }
 
     public void setRefreshEnable(boolean refreshEnable) {
