@@ -1,9 +1,6 @@
 package com.madreain.hulk.http.resourceSubscriber;
 
-
-
-import android.support.annotation.IntDef;
-
+import androidx.annotation.IntDef;
 
 import com.madreain.hulk.config.HulkConfig;
 import com.madreain.hulk.http.exception.NetWorkException;

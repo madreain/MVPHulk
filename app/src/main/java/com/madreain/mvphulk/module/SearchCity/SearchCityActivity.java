@@ -1,9 +1,10 @@
 package com.madreain.mvphulk.module.SearchCity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.madreain.hulk.ui.BaseActivity;

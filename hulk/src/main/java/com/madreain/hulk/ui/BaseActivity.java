@@ -4,12 +4,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.LayoutRes;
+import androidx.appcompat.widget.Toolbar;
 
 import com.androidadvance.topsnackbar.TSnackbar;
 import com.madreain.hulk.R;

@@ -1,7 +1,7 @@
 package com.madreain.hulk.mvp;
 
-import android.support.annotation.Keep;
 
+import androidx.annotation.Keep;
 
 /**
  * @author madreain

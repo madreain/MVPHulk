@@ -3,23 +3,25 @@ package com.madreain.hulk.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.madreain.hulk.mvp.IPresenter;
 import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.utils.T;
 import com.madreain.hulk.view.varyview.IVaryViewHelperController;
-import com.trello.rxlifecycle2.components.support.RxDialogFragment;
+import com.trello.rxlifecycle3.components.support.RxDialogFragment;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 
 /**

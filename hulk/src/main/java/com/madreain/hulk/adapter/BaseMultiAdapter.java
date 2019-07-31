@@ -1,14 +1,9 @@
 package com.madreain.hulk.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.chad.library.adapter.base.loadmore.LoadMoreView;
 import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.view.baseviewholder.HulkViewHolder;
 

@@ -5,7 +5,7 @@ ext {
     //应用配置
     android = [
             compileSdkVersion: 28,
-            buildToolsVersion: "28.0.0",
+            buildToolsVersion: "28.0.2",
             minSdkVersion    : 16,
             targetSdkVersion : 28,
             versionCode      : 1,
@@ -18,21 +18,31 @@ ext {
             okhttpSdkVersion       : "4.0.1",
             retrofitSdkVersion      : "2.6.0",
             glideSdkVersion         : "4.9.0",
-            dagger2SdkVersion       : "2.21",
-            butterknifeSdkVersion   : "9.0.0",
+            daggerSdkVersion       : "2.24",
+            butterknifeSdkVersion   : "10.1.0",
             rxlifecycle2SdkVersion  : "3.0.0",
     ]
 
     dependencies = [
             //support
-            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
-            "design"                   : "com.android.support:design:${version["androidSupportSdkVersion"]}",
-            "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
-            "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
-            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
-            "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
-            "constraint-layout"        : "com.android.support.constraint:constraint-layout:1.1.3",
-            "multidex"                 : "com.android.support:multidex:1.0.3",
+//            "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
+//            "design"                   : "com.android.support:design:${version["androidSupportSdkVersion"]}",
+//            "support-v4"               : "com.android.support:support-v4:${version["androidSupportSdkVersion"]}",
+//            "cardview-v7"              : "com.android.support:cardview-v7:${version["androidSupportSdkVersion"]}",
+//            "annotations"              : "com.android.support:support-annotations:${version["androidSupportSdkVersion"]}",
+//            "recyclerview-v7"          : "com.android.support:recyclerview-v7:${version["androidSupportSdkVersion"]}",
+//            "constraint-layout"        : "com.android.support.constraint:constraint-layout:1.1.3",
+//            "multidex"                 : "com.android.support:multidex:1.0.3",
+
+            "appcompat"                : "androidx.appcompat:appcompat:1.0.0",
+            "design"                   : "com.google.android.material:material:1.0.0",
+            "support-v4"               : "androidx.legacy:legacy-support-v4:1.0.0",
+            "cardview"                 : "androidx.cardview:cardview:1.0.0",
+            "annotations"              : "androidx.annotation:annotation:1.0.0",
+            "recyclerview"             : "androidx.recyclerview:recyclerview:1.0.0",
+            "constraintlayout"         : "androidx.constraintlayout:constraintlayout:1.1.2",
+            "multidex"                 : "androidx.multidex:multidex:2.0.0",
+
 
             //rx
             "rxjava"                  : "io.reactivex.rxjava3:rxjava:3.0.0-RC1",
@@ -61,11 +71,11 @@ ext {
             //gson
             "gson"                     : "com.google.code.gson:gson:2.8.5",
             //dagger2
-            "dagger2"                  : "com.google.dagger:dagger:${version["dagger2SdkVersion"]}",
-            "dagger2-android"          : "com.google.dagger:dagger-android:${version["dagger2SdkVersion"]}",
-            "dagger2-android-support"  : "com.google.dagger:dagger-android-support:${version["dagger2SdkVersion"]}",
-            "dagger2-compiler"         : "com.google.dagger:dagger-compiler:${version["dagger2SdkVersion"]}",
-            "dagger2-android-processor": "com.google.dagger:dagger-android-processor:${version["dagger2SdkVersion"]}",
+            "dagger"                  : "com.google.dagger:dagger:${version["daggerSdkVersion"]}",
+            "dagger-android"          : "com.google.dagger:dagger-android:${version["daggerSdkVersion"]}",
+            "dagger-android-support"  : "com.google.dagger:dagger-android-support:${version["daggerSdkVersion"]}",
+            "dagger-compiler"         : "com.google.dagger:dagger-compiler:${version["daggerSdkVersion"]}",
+            "dagger-android-processor": "com.google.dagger:dagger-android-processor:${version["daggerSdkVersion"]}",
             //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
             "javax.annotation"         : "org.glassfish:javax.annotation:10.0-b28",
             //butterknife
@@ -77,10 +87,10 @@ ext {
             "arouter"                  : "com.alibaba:arouter-api:1.5.0",
             "arouter-compiler"         : "com.alibaba:arouter-compiler:1.2.2",
             //BaseRecyclerViewAdapterHelper
-            "brvah"                    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46",
+            "brvah"                    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.49",
             //SmartRefreshLayout
-            "SmartRefreshLayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-28",
-            "SmartRefreshHeader"       : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-28",
+            "SmartRefreshLayout"       : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-15",
+            "SmartRefreshHeader"       : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-15",
 
             //view
             "topsnackbar"              : "com.androidadvance:topsnackbar:1.1.1",

@@ -11,11 +11,10 @@ import com.madreain.hulk.http.interceptor.IVersionDiffInterceptor;
 import com.madreain.hulk.mvp.IRes;
 import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.utils.ListUtil;
-import com.madreain.hulk.utils.LogUtils;
 import com.madreain.hulk.utils.StringUtils;
-import com.trello.rxlifecycle2.LifecycleTransformer;
-import com.trello.rxlifecycle2.android.ActivityEvent;
-import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle3.LifecycleTransformer;
+import com.trello.rxlifecycle3.android.ActivityEvent;
+import com.trello.rxlifecycle3.android.FragmentEvent;
 
 import java.util.List;
 

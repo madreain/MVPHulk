@@ -1,7 +1,8 @@
 package com.madreain.hulk.view.baseviewholder;
 
-import android.support.annotation.IntDef;
 import android.view.View;
+
+import androidx.annotation.IntDef;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 

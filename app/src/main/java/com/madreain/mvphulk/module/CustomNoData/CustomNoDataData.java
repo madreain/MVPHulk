@@ -1,6 +1,6 @@
 package com.madreain.mvphulk.module.CustomNoData;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * @author madreain

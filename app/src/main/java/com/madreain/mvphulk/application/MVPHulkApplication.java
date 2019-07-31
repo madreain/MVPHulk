@@ -3,8 +3,9 @@ package com.madreain.mvphulk.application;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.multidex.MultiDex;
-import android.support.v7.app.AppCompatDelegate;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.multidex.MultiDex;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.request.target.ViewTarget;
@@ -22,10 +23,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+import dagger.android.AndroidInjector;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -52,6 +51,11 @@ public class MVPHulkApplication extends HulkApplication {
     public void onCreate() {
         super.onCreate();
    }
+
+    @Override
+    protected AndroidInjector<MVPHulkApplication> applicationInjector() {
+        return null;
+    }
 
     @Override
     public void initHulkConfig() {

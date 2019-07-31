@@ -3,14 +3,15 @@ package com.madreain.hulk.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.view.View;
+
+import androidx.annotation.LayoutRes;
 
 import com.madreain.hulk.mvp.IPresenter;
 import com.madreain.hulk.mvp.IView;
 import com.madreain.hulk.utils.T;
 import com.madreain.hulk.view.varyview.IVaryViewHelperController;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
 

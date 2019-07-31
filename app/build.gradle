@@ -75,15 +75,15 @@ def getCodeListSuccess() {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //constraint-layout
-    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["constraintlayout"]
     //multidex
     api rootProject.ext.dependencies["multidex"]
     //hulk引入
-//    api project(':hulk')
-    api 'com.madreain:hulk:0.0.2'
+    api project(':hulk')
+//    api 'com.madreain:hulk:0.0.2'
     //dagger2
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
     //butterknife
     api rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]

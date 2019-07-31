@@ -7,7 +7,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         //ARouter添加的
         javaCompileOptions {
@@ -32,6 +32,7 @@ android {
     //Lint 会检查项目中的语法错误
     lintOptions {
         abortOnError false
+        disable 'GoogleAppIndexingWarning'
     }
 
 }
@@ -46,9 +47,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //support
     api rootProject.ext.dependencies["support-v4"]
-    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["design"]
-    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["annotations"]
     //rx
     api rootProject.ext.dependencies["rxjava"]
@@ -71,11 +72,11 @@ dependencies {
     //gson
     api rootProject.ext.dependencies["gson"]
     //dagger2
-    api rootProject.ext.dependencies["dagger2"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-    api rootProject.ext.dependencies["dagger2-android"]
-    api rootProject.ext.dependencies["dagger2-android-support"]
-    annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
+    api rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger-android-support"]
+    annotationProcessor rootProject.ext.dependencies["dagger-android-processor"]
     //Dagger2 javax.annotation不存在   添加缺失的部分javax注解
     api rootProject.ext.dependencies["javax.annotation"]
     //butterknife

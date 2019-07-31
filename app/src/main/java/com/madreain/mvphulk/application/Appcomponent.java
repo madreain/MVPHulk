@@ -7,7 +7,7 @@ import com.madreain.mvphulk.BuilderModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import dagger.android.support.AndroidSupportInjectionModule;
+//import dagger.android.AndroidInjectionModule;
 import retrofit2.Retrofit;
 
 /**
@@ -17,7 +17,7 @@ import retrofit2.Retrofit;
  * description：
  */
 @Singleton
-@Component(modules = {AndroidSupportInjectionModule.class, ApiModule.class, BuilderModule.class})
+@Component(modules = {ApiModule.class, BuilderModule.class})
 public interface Appcomponent extends IAppComponent {
 
     void inject(MVPHulkApplication mvpHulkApplication);

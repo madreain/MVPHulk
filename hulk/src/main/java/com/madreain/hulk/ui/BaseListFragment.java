@@ -1,13 +1,12 @@
 package com.madreain.hulk.ui;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.madreain.hulk.adapter.BaseAdapter;
-import com.madreain.hulk.adapter.BaseMultiAdapter;
 import com.madreain.hulk.mvp.BasePresenter;
 import com.madreain.hulk.mvp.IListView;
 import com.madreain.hulk.utils.ListUtil;

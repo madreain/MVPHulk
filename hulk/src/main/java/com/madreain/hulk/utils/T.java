@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.StringRes;
 import android.view.Gravity;
 import android.widget.Toast;
+
+import androidx.annotation.StringRes;
 
 
 /**

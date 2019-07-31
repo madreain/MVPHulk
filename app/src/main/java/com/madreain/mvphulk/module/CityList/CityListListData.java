@@ -1,6 +1,6 @@
 package com.madreain.mvphulk.module.CityList;
 
-import android.support.annotation.Keep;
+import androidx.annotation.Keep;
 
 /**
  * @author madreain

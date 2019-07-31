@@ -2,12 +2,11 @@ package com.madreain.mvphulk.module.RefreshCityList;
 
 import android.os.Bundle;
 import android.view.View;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.madreain.hulk.ui.BaseListActivity;
 import com.madreain.mvphulk.consts.ARouterUri;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
