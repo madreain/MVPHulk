@@ -79,8 +79,8 @@ dependencies {
     //multidex
     api rootProject.ext.dependencies["multidex"]
     //hulk引入
-//    api project(':hulk')
-    api 'com.madreain:hulk:0.0.2'
+    api project(':hulk')
+//    api 'com.madreain:hulk:0.0.2'
     //dagger2
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     annotationProcessor rootProject.ext.dependencies["dagger2-android-processor"]
