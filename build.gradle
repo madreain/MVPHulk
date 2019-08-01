@@ -11,7 +11,9 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta05'
+
         //上传到jcenter的相关配置
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'

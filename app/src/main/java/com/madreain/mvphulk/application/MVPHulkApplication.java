@@ -24,7 +24,10 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 
 
+import javax.inject.Inject;
+
 import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -34,6 +37,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  * description：
  */
 public class MVPHulkApplication extends HulkApplication {
+
+    @Inject
+    DispatchingAndroidInjector<MVPHulkApplication> mvpHulkApplicationDispatchingAndroidInjector;
 
     private static Appcomponent appcomponent;
 
@@ -54,7 +60,7 @@ public class MVPHulkApplication extends HulkApplication {
 
     @Override
     protected AndroidInjector<MVPHulkApplication> applicationInjector() {
-        return null;
+        return mvpHulkApplicationDispatchingAndroidInjector;
     }
 
     @Override
