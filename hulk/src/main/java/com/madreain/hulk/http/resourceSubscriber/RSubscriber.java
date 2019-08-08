@@ -16,7 +16,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * @author madreain
  * @date 2019-07-04.
- * module：接口数据返回单个对象
+ * module：只是接口数据返回
  * description：
  */
 public abstract class RSubscriber<T> extends RSubscriberAbstract<T>  {

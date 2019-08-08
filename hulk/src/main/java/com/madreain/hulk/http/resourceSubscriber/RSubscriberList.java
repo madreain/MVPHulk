@@ -20,7 +20,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * @author madreain
  * @date 2019-07-04.
- * module：接口数据返回对象集合
+ * module：接口数据返回可刷新加载更多
  * description：
  */
 public abstract class RSubscriberList<T> extends RSubscriberAbstract<T> {
