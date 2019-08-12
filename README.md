@@ -77,6 +77,8 @@ compileOptions {
 
 ```
 api 'com.madreain:hulk:1.0.0'
+//androidx版本
+api 'com.madreain:hulk:1.0.0-andx'
 
 //dagger2
 annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
