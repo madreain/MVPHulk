@@ -46,11 +46,6 @@ public class MVPHulkApplication extends HulkApplication {
     }
 
     @Override
-    protected AndroidInjector<MVPHulkApplication> applicationInjector() {
-        return appcomponent.builder().create(this);
-    }
-
-    @Override
     public void initHulkConfig() {
         //DaggerAppComponent的生成make project一下就行
         appcomponent = DaggerAppcomponent.builder().apiModule(new com.madreain.hulk.application.ApiModule()).build();

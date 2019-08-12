@@ -20,7 +20,7 @@ import dagger.android.DaggerApplication;
  * module：
  * description：
  */
-public abstract class HulkApplication extends DaggerApplication {
+public abstract class HulkApplication extends Application {
 
     public abstract void initHulkConfig();//初始化配置参数
 
