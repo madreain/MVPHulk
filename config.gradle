@@ -18,7 +18,7 @@ ext {
             okhttpSdkVersion       : "4.0.1",
             retrofitSdkVersion      : "2.6.0",
             glideSdkVersion         : "4.9.0",
-            daggerSdkVersion       : "2.24",
+            daggerSdkVersion       : "2.23.2",
             butterknifeSdkVersion   : "10.1.0",
             rxlifecycle2SdkVersion  : "3.0.0",
     ]
