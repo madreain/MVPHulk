@@ -76,7 +76,7 @@ compileOptions {
 
 
 ```
-api 'com.madreain:hulk:0.0.1'
+api 'com.madreain:hulk:1.0.0'
 
 //dagger2
 annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
