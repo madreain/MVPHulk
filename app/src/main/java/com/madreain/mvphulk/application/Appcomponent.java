@@ -8,6 +8,8 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 //import dagger.android.AndroidInjectionModule;
+import dagger.android.AndroidInjectionModule;
+import dagger.android.support.AndroidSupportInjectionModule;
 import retrofit2.Retrofit;
 
 /**
@@ -17,7 +19,11 @@ import retrofit2.Retrofit;
  * description：
  */
 @Singleton
-@Component(modules = {ApiModule.class, BuilderModule.class})
+@Component(modules = {
+        AndroidInjectionModule.class,
+        AndroidSupportInjectionModule.class,
+        ApiModule.class,
+        BuilderModule.class})
 public interface Appcomponent extends IAppComponent {
 
     void inject(MVPHulkApplication mvpHulkApplication);
