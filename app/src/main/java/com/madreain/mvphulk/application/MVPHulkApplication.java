@@ -33,9 +33,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class MVPHulkApplication extends HulkApplication {
 
-    @Inject
-    DispatchingAndroidInjector<MVPHulkApplication> mvpHulkApplicationDispatchingAndroidInjector;
-
     private static Appcomponent appcomponent;
 
     public static Appcomponent getAppcomponent() {
@@ -49,13 +46,8 @@ public class MVPHulkApplication extends HulkApplication {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-   }
-
-    @Override
     protected AndroidInjector<MVPHulkApplication> applicationInjector() {
-        return mvpHulkApplicationDispatchingAndroidInjector;
+        return appcomponent.builder().create(this);
     }
 
     @Override
