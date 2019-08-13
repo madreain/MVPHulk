@@ -6,12 +6,6 @@
 > MVPHulk是RxJava+Rxlifecycle+Okhttp+Retrofit+Dagger2+MVP框架，结合BaseRecyclerViewAdapterHelper和SmartRefreshLayout封装可刷新加载的Base类并结合接口回掉做了三种接口交互方式，
 Butterknife用于View注入，EventBus用于通信，ARouter用于组件化路由跳转。
 
-## 特点功能
-
- - 支持单界面、List界面（刷新加载）
- - 支持定制化无数据、网络错误、loading样式
- - 支持AndroidX
-
 ## 使用第三方库
 
 1. [`RxJava` JVM响应式扩展Reactive Extensions 用于使用Java VM的可观察序列编写异步和基于事件的程序的库](https://github.com/ReactiveX/RxJava)
