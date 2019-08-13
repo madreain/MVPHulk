@@ -115,7 +115,7 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
         if (null != onClickListener) {
             againBtn.setOnClickListener(onClickListener);
 //            againBtn.setVisibility(View.VISIBLE);
-            againBtn.setVisibility(View.GONE);//按钮都隐藏，空页面没有刷新 2018.9.5
+            againBtn.setVisibility(View.GONE);
         } else {
             againBtn.setVisibility(View.GONE);
         }
