@@ -29,6 +29,19 @@ Butterknife用于View注入，EventBus用于通信，ARouter用于组件化路�
 
 ### 方法一：直接引入源码，在app的build.gradle
 
+1.项目的build.gradle
+
+```
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+```
+
+2.app的build.gradle
+
 ```
 api project(':hulk')
 
@@ -76,6 +89,7 @@ compileOptions {
 
 
 ```
+//1.0.0版本
 api 'com.madreain:hulk:1.0.0'
 //androidx版本
 api 'com.madreain:hulk:1.0.0-andx'
@@ -243,7 +257,7 @@ public class MVPHulkApplication extends HulkApplication {
 
 ### 2.dagger2和mvp结合
 
-app的build.gradle需引入相关dagger2库,步骤1中已配置
+app的build.gradle需引入相关dagger2库,-[项目配置介绍](#项目配置介绍)中已配置
 
 1.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
 
@@ -517,7 +531,7 @@ public class ARouterUri {
 接下来，我们要真正的进入业务开发阶段了
 
 ### 6.利用HulkTemplate生成对应单Activity、单Fragment、单DialogFragment、ListActivity、ListFragment
-[MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate)
+[MVPHulkTemplate使用指南](https://github.com/madreain/MVPHulkTemplate?_blank)
 
 ### 7.第6步生成的记得在BuilderModule进行注册
 
