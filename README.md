@@ -665,6 +665,11 @@ public class CityListPresenter extends BasePresenter<CityListModel, CityListCont
 }
 ```
 
+⚠️注意：RSubscriberList（适用于List界面，可刷新加载更多）、RSubscriber（适用于单界面）
+
+Transformer中retrofit（BaseRes类中的泛型 -即有result）、retrofitBaseRes（接口响应只有BaseRes,内部的泛型为null）
+
+
 6.)继承自BaseAdapter的Adapter设置相关数据展示
 
 参考如下
