@@ -37,8 +37,8 @@ public class ApiModule {
     Retrofit getRetrofit(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(HulkConfig.getBaseUrl())
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).setPrettyPrinting().disableHtmlEscaping().create()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).setPrettyPrinting().disableHtmlEscaping().create()))//服务器数据的解析
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//call适配器
                 .client(okHttpClient)
                 .build();
     }
@@ -47,15 +47,17 @@ public class ApiModule {
     @Provides
     OkHttpClient getOkHttpClient(List<Interceptor> interceptors) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //拦截器
         for (Interceptor interceptor : interceptors) {
             builder.addInterceptor(interceptor);
         }
         return builder.connectTimeout(HulkConfig.getConnectTimeout(), TimeUnit.SECONDS)//设置请求超时时间
-                .readTimeout(HulkConfig.getReadTimeout(), TimeUnit.SECONDS)
-                .writeTimeout(HulkConfig.getWriteTimeout(), TimeUnit.SECONDS)
+                .readTimeout(HulkConfig.getReadTimeout(), TimeUnit.SECONDS)//设置读超时时间
+                .writeTimeout(HulkConfig.getWriteTimeout(), TimeUnit.SECONDS)//设置写超时时间
                 .retryOnConnectionFailure(true)//设置出现错误进行重新连接。
                 .build();
     }
+
 
     private class NullStringToEmptyAdapterFactory implements TypeAdapterFactory {
         @SuppressWarnings("unchecked")
