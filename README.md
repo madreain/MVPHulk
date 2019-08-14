@@ -892,6 +892,8 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
 
 ```
 
+然后在对应的Activity、Fragment中重写initVaryViewHelperController方法，另外这里为了酷炫的效果建议引入[lottie](https://github.com/airbnb/lottie-android),相关[lottie素材](https://lottiefiles.com/)
+
 ### 11.接口调用时，BRSubscriberList、RSubscriber对应三种接口交互方式
      NULL（无交互）
      TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
