@@ -273,7 +273,7 @@ public abstract class BuilderModule {
 
 ```
 
-2.)Appcomponent的创建(Application)
+2.)Appcomponent的创建
 
 
 参考代码

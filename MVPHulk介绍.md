@@ -17,7 +17,9 @@
 ## 传送门
 
 1.[MVPHulk上手文档](https://github.com/madreain/MVPHulk/blob/master/README.md)
+
 2.[MVPHulkTemplate使用文档](https://github.com/madreain/MVPHulkTemplate/blob/master/README.md)
+
 3.[MVPHulk源码下载](https://github.com/madreain/MVPHulk/releases)
 
 ## 简单用例
@@ -106,7 +108,7 @@ public abstract class BuilderModule {
 
 ```
 
-2.)Appcomponent的创建(Application)
+2.)Appcomponent的创建
 
 
 参考代码
