@@ -33,6 +33,7 @@ Butterknife用于View注入，EventBus用于通信，ARouter用于组件化路�
 ```
 allprojects {
     repositories {
+        maven { url "https://jitpack.io" }
         google()
         jcenter()
     }
@@ -69,6 +70,7 @@ compileOptions {
 ```
 allprojects {
     repositories {
+        maven { url "https://jitpack.io" }
         google()
         jcenter()
     }
