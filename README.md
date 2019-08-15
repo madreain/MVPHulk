@@ -258,10 +258,11 @@ public class MVPHulkApplication extends HulkApplication {
 
 ### 2.dagger2和mvp结合
 
-app的build.gradle需引入相关dagger2库,-[项目配置介绍](#项目配置介绍)中已配置
+app的build.gradle需引入相关dagger2库,-[项目配置介绍](#项目配置介绍)中已配置，此部分内容自行参考
 
 1.)BuilderModule的创建(所有的activity、fragment都要在这里进行注册)（⚠️注意：我在Demo里是放在了包名下面，我在项目开发中会使用到Template模版开发）
 
+参考代码
 ```
 
 @Module
@@ -274,6 +275,8 @@ public abstract class BuilderModule {
 
 2.)Appcomponent的创建(Application)
 
+
+参考代码
 ```
 
 @Singleton
@@ -293,6 +296,7 @@ public interface Appcomponent extends IAppComponent {
 
 3.)以及注入初始化代码。 app级别的当然在application里面出初始化
 
+参考代码
 ```
 public class HulkUnionApplication extends HulkApplication {
 
@@ -323,6 +327,7 @@ public class HulkUnionApplication extends HulkApplication {
 1.)在config.gradle中配置开启日志、开启切换环境、BASEURL的相关参数
 ##### config.gradle的相关参数
 
+参考代码
 ```
 OPEN_LOG = true
 OPEN_CHANGE = true
@@ -332,9 +337,11 @@ CODE_SUCCESS = "1"
 CODELIST_SUCCESS = "1,0"
 ```
 
+⚠️注意：优先级：CODE_SUCCESS>CODELIST_SUCCESS，针对项目只需要设置其中一个就行
+
 ##### app的build.gradle中定义这三个参数,android下的defaultConfig
 
-
+参考代码
 ```
 //定义网络请求成功返回码 baseurl  日志打印  切换环境  在代码中BuildConfig.BASE_URL去使用
 buildConfigField "String", "CODE_SUCCESS", getCodeSuccess()
@@ -373,6 +380,7 @@ def getCodeListSuccess() {
 2.)网络请求的相关拦截器
 ##### 请求头拦截
 
+参考代码
 ```
 public class RequestHeaderInterceptor implements Interceptor {
 
@@ -392,6 +400,7 @@ public class RequestHeaderInterceptor implements Interceptor {
 
 ##### 非正常态拦截（互踢的场景）
 
+参考代码
 ```
 public class SessionInterceptor implements IReturnCodeErrorInterceptor {
 
@@ -413,10 +422,13 @@ public class SessionInterceptor implements IReturnCodeErrorInterceptor {
 
 ##### 消息拦截器
 
+参考代码
 ```
 HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 ```
+
+⚠️注意：可进行扩展设置多种拦截器，可参考OkHttp拦截器
 
 3.)默认占位图、默认头像占位图
 
@@ -507,7 +519,7 @@ public class HulkUnionApplication extends HulkApplication {
 }
 ```
 
-### 4.ApiService接口创建（Demo中是放在包名下的module/api下，因为会结合Template去生成代码）
+### 4.ApiService接口创建（Demo中是放在包名下的module/api下，因为会结合Template去生成代码，因此建议也使用ApiService命名）
 
 ```
 public interface ApiService {
@@ -518,7 +530,7 @@ public interface ApiService {
 }
 ```
 
-### 5.ARouterUri类创建，ARouter的路径存放（Demo中是放在包名下的consts下，因为会结合Template去生成代码）,ARouterKey用于数据传递的key
+### 5.ARouterUri类创建，ARouter的路径存放（Demo中是放在包名下的consts下，因为会结合Template去生成代码，因此建议也使用ARouterUri命名）,ARouterKey用于数据传递的key
 
 ```
 public class ARouterUri {
@@ -607,6 +619,8 @@ public interface ApiService {
     
 }
 ```
+
+⚠️注意：项目中，还是建议GET、HEAD、POST、DELETE、PUT、DELETE，遵循restful风格
 
 4.)继承自BaseModel的对应Model增加接口调用的方法
 
