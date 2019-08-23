@@ -915,4 +915,61 @@ public class MyVaryViewHelperController implements IVaryViewHelperController {
      TOAST（接口开始showDialogProgress()---->>接口结束 dismissDialog() 错误Toast）
      REPLACE（接口开始showLoading()---->>接口结束 :成功：restore(),失败：showError(); 失败、无数据情况会对应相应的ui展示）
         
+### 12.针对不同公司的接口返回规范不一样，可实现IRes<T>方法
+
+主要是实现getMsg()、getCode()、getResult()、getVersion()方法，getMsg()对应的是接口返回的信息（错误信息、成功信息等），
+getCode()对应的调用接口返回的code码（增删改查成功、失败的各种返回码等），getResult()对应的是接口返回的数据，getVersion()当前接口的接口版本号
+
+
+
+参考代码如下：
+
+```
+@Keep
+public class BaseRes<T> implements IRes<T> {
+
+    private T data;
+    private String code;
+    private String msg;
+    private String version;
+
+    @Override
+    public T getResult() {
+        return data;
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public void setResult(T data) {
+        this.data = data;
+    }
+
+    @Override
+    public String getMsg() {
+        return msg;
+    }
+
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+}
+
+```
 
